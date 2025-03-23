@@ -1,0 +1,15 @@
+@mixin font($f-name, $f-style, $f-weight, $f-url) {
+	@font-face {
+		font-family: $f-name;
+		font-style: $f-style;
+		font-weight: $f-weight;
+		src:
+			url('../fonts/#{$f-url}.woff2') format('woff2'),
+			url('../../fonts/#{$f-url}.woff') format('woff');
+	}
+}
+
+@include font('Raleway', normal, 300, 'SegoeUI/SegoeUI-Light');
+@include font('Raleway', normal, 400, 'SegoeUI/SegoeUI');
+@include font('Raleway', normal, 600, 'SegoeUI/SegoeUI-SemiBold');
+@include font('Raleway', normal, 700, 'SegoeUI/SegoeUI-Bold');
