@@ -1,0 +1,25 @@
+{
+  "editor.formatOnSave": false,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+  "eslint.validate": [
+    "javascript",
+    "typescript",
+    "vue",
+    "json",
+    "yaml"
+  ],
+  "eslint.run": "onType",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "emmet.extensionsPath": [
+    ".vscode/emmet"
+  ],
+  "emmet.includeLanguages": {
+    "vue": "html",
+    "vue-style": "scss"
+  },
+  "workbench.editorAssociations": {
+    "*.svg": "default"
+  }
+}
