@@ -4,12 +4,12 @@
 		font-style: $f-style;
 		font-weight: $f-weight;
 		src:
-			url('../../fonts/#{$f-url}.woff2') format('woff2'),
-			url('../../fonts/#{$f-url}.woff') format('woff');
+			url('../fonts/#{$f-url}.woff2') format('woff2'),
+			url('../fonts/#{$f-url}.woff') format('woff');
 	}
 }
 
-@include font('Raleway', normal, 300, 'SegoeUI/SegoeUI-Light');
-@include font('Raleway', normal, 400, 'SegoeUI/SegoeUI');
-@include font('Raleway', normal, 600, 'SegoeUI/SegoeUI-SemiBold');
-@include font('Raleway', normal, 700, 'SegoeUI/SegoeUI-Bold');
+@include font('SegoeUI', normal, 300, 'SegoeUI/SegoeUI-Light');
+@include font('SegoeUI', normal, 400, 'SegoeUI/SegoeUI');
+@include font('SegoeUI', normal, 600, 'SegoeUI/SegoeUI-SemiBold');
+@include font('SegoeUI', normal, 700, 'SegoeUI/SegoeUI-Bold');
