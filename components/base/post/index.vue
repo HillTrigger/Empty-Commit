@@ -1,5 +1,7 @@
 <script setup lang="js">
-defineProps({
+import { renderMarkdown } from '~/composables/useMarkdown';
+
+const props = defineProps({
 	id: {
     type: Number,
 		required: true,
@@ -8,17 +10,25 @@ defineProps({
     type: String,
 		required: true,
   },
-	description: {
+	author: {
+    type: String,
+		required: true,
+  },
+	content: {
     type: String,
 		default: undefined
   },
 });
 
+const postContent = renderMarkdown(props.content);
+
 </script>
 
 <template>
-  <a href="#">
-    <h4>{{ id }} - {{ title }}</h4>
-    <p>{{ description }}</p>
-  </a>
+  <div class="bg-background-200 py-3 px-4  border border-border rounded-md w-full">
+    <div>
+      <span>{{ author }}</span>
+    </div>
+    <div v-sanitize-html="postContent" class="bg-background-300 w-full rounded-md p-4"/>
+  </div>
 </template>
