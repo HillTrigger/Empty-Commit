@@ -15,14 +15,17 @@ export function useEmptyCommitData() {
 
 	const getUser = async (login) => {
 		try {
-			const {data} = await axios.get(`https://directus.api.hilltrigger.ru/items/users?filter[login][_eq]=${login}`);
-			const items = data.data;			
-      return items;
+			const {data} = await axios.get(`https://directus.api.hilltrigger.ru/items/users?filter[login][_eq]=${login}`, 
+			{
+				headers: {
+					'Authorization': 'Bearer KQrdPLbGG9kBoezV7eQDWrI19_YyaJz4', // ← Твой API-ключ
+				},
+			});
+      return data.data[0];
 		} catch (error) {
 			console.error('Error fetching data:', error);
-			return error;
+			return null;
 		}
-		
 	};
 
 	return {

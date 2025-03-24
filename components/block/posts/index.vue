@@ -12,6 +12,7 @@ const {data: posts} = await useAsyncData('posts', getItems);
       :id="post.id"
       :key="post.id"
       :author="post.author"
+      :date="post.date"
       :title="post.title"
       :description="post.description"
       :content="post.content"

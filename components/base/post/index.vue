@@ -1,5 +1,7 @@
 <script setup lang="js">
 import { renderMarkdown } from '~/composables/useMarkdown';
+const {getUser} = useEmptyCommitData();
+
 
 const props = defineProps({
 	id: {
@@ -16,18 +18,36 @@ const props = defineProps({
   },
 	content: {
     type: String,
-		default: undefined
+		required: true,
   },
+	date: {
+    type: String,
+		required: true,
+  }
 });
 
-const postContent = renderMarkdown(props.content);
+const postContent = computed(() => renderMarkdown(props.content));
+
+const { data: user } = await useAsyncData(
+  `user-${props.author}`, // уникальный ключ для кеширования
+  () => {
+		return getUser(props.author);
+	},
+  { watch: [() => props.author] } // обновлять данные при изменении author
+);
 
 </script>
 
 <template>
-  <div class="bg-background-200 py-3 px-4  border border-border rounded-md w-full">
-    <div>
-      <span>{{ author }}</span>
+  <div class="bg-background-200 py-3 px-4  border border-border rounded-md w-full flex flex-col gap-2">
+    <div class="flex items-center gap-2">
+      <div class="w-10 h-10 rounded-full overflow-hidden">
+        <img :src="`https://directus.api.hilltrigger.ru/assets/${user.avatar}?width=256&height=256&fit=cover`" alt="ava">
+      </div>
+      <div class="flex flex-col">
+        <span class="text-sm">{{ user.login }}</span>
+        <span class="text-xs text-text-secondary">{{ date }}</span>
+      </div>
     </div>
     <div v-sanitize-html="postContent" class="bg-background-300 w-full rounded-md p-4"/>
   </div>
