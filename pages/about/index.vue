@@ -5,6 +5,6 @@
 
 <template>
   <div>
-    <BlockPosts/>
+    About
   </div>
 </template>

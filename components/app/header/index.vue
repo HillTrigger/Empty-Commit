@@ -3,7 +3,7 @@
     ModalNavigation: false,
   });
 
-	const {openModal} = useModalAction(modalStates);
+	const {openModal, closeModal} = useModalAction(modalStates);
 
 </script>
 
