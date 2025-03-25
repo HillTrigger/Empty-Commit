@@ -28,14 +28,15 @@ const props = defineProps({
 
 const postContent = computed(() => renderMarkdown(props.content));
 
-const { data: user } = await useAsyncData(
-  `user-${props.author}`, // уникальный ключ для кеширования
-  () => {
-		return getUser(props.author);
-	},
-  { watch: [() => props.author] } // обновлять данные при изменении author
-);
-
+const { data: user } = useAsyncData(`user-${props.author}`, async () => {
+  try {
+    const result = await getUser(props.author);
+    return result || [];
+  } catch (err) {
+    console.error('Ошибка при получении данных:', err);
+    return [];
+  }
+}, { server: true });
 </script>
 
 <template>

@@ -1,34 +1,24 @@
-import axios from 'axios';
-
 export function useEmptyCommitData() {
-	
-	const getItems = async () => {
-		try {
-			const {data} = await axios.get('https://directus.api.hilltrigger.ru/items/posts');
-			const items = data.data;			
-      return items;
-		} catch (error) {
-			console.error('Error fetching data:', error);
-			return error;
-		}
-	};
+  const getItems = async () => {
+    try {
+      const data = await $fetch('/api/getItems');  // Теперь работает через серверный обработчик
+			
+      return data;
+    } catch (error) {
+      console.error('Ошибка при получении данных:', error);
+      return null;  // Возвращаем null, если ошибка
+    }
+  };
 
-	const getUser = async (login) => {
-		try {
-			const {data} = await axios.get(`https://directus.api.hilltrigger.ru/items/users?filter[login][_eq]=${login}`, 
-			{
-				headers: {
-					'Authorization': 'Bearer KQrdPLbGG9kBoezV7eQDWrI19_YyaJz4', // ← Твой API-ключ
-				},
-			});
-      return data.data[0];
-		} catch (error) {
-			console.error('Error fetching data:', error);
-			return null;
-		}
-	};
+  const getUser = async (login) => {
+    try {
+      const data = await $fetch(`/api/getUser?login=${login}`);
+      return data || null;  // Возвращаем null, если пользователь не найден
+    } catch (error) {
+      console.error('Ошибка при получении пользователя:', error);
+      return null;  // Возвращаем null в случае ошибки
+    }
+  };
 
-	return {
-		getItems, getUser
-	};
+  return { getItems, getUser };
 }

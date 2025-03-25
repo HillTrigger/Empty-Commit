@@ -23,6 +23,7 @@
   },
   "devDependencies": {
     "@nuxt/eslint": "^1.2.0",
+    "dotenv": "^16.4.7",
     "sass": "^1.86.0"
   }
 }

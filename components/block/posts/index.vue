@@ -1,8 +1,19 @@
-<script setup lang="js">
-const {getItems} = useEmptyCommitData();
+<script setup>
+const { getItems } = useEmptyCommitData();
 
-const {data: posts} = await useAsyncData('posts', getItems);
+
+const { data: posts } = useAsyncData('posts', async () => {
+  try {
+    const result = await getItems();
+    return result || [];
+  } catch (err) {
+    console.error('Ошибка при получении данных:', err);
+    return [];
+  }
+}, { server: true });
+
 </script>
+
 
 <template>
   <div class="flex flex-col gap-4 mx-auto p-10 max-w-4xl">
