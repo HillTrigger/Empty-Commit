@@ -36,7 +36,10 @@ const { data: user } = useAsyncData(`user-${props.author}`, async () => {
     console.error('Ошибка при получении данных:', err);
     return [];
   }
-}, { server: true });
+},{
+    server: true, // Только на сервере
+    lazy: false // Блокировать рендер до загрузки
+  });
 </script>
 
 <template>

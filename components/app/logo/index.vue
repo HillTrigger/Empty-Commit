@@ -1,6 +1,10 @@
 <script setup lang="js">
-const pageTitle = title[useRoute().path];
-
+defineProps({
+	pageTitle: {
+		type: String,
+		default: ''
+	}
+});
 </script>
 
 <template>

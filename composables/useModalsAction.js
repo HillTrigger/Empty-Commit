@@ -3,7 +3,7 @@ export function useModalAction(modalStates) {
     modalStates.value[modalId] = true;
   };
 	const closeModal = (modalId, e) => {
-    if (e.currentTarget !== e.target) {
+    if (e.currentTarget === e.target) {
         modalStates.value[modalId] = false;
     }
 	};

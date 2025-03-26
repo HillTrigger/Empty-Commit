@@ -19,9 +19,6 @@ export default defineEventHandler(async (event) => {
       statusMessage: 'API key is missing in configuration' 
     });
   }
-
-  console.log('API Key:', config.apiKey);
-
   try {
     const response = await $fetch(`https://directus.api.hilltrigger.ru/items/users?filter[login][_eq]=${query.login}`, {
       headers: {
