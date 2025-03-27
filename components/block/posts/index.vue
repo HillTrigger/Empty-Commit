@@ -11,8 +11,7 @@ const { data: posts } = useAsyncData('posts', async () => {
     return [];
   }
 },{
-    server: true, // Только на сервере
-    lazy: false // Блокировать рендер до загрузки
+    server: true
   });
 
 </script>

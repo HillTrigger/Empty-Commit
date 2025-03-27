@@ -37,8 +37,7 @@ const { data: user } = useAsyncData(`user-${props.author}`, async () => {
     return [];
   }
 },{
-    server: true, // Только на сервере
-    lazy: false // Блокировать рендер до загрузки
+    server: true 
   });
 </script>
 
