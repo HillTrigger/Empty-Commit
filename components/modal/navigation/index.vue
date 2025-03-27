@@ -23,19 +23,21 @@
       <div class="navigation-body h-full w-80 bg-background-300 rounded-l-xl p-4 flex flex-col gap-4">
         <div class="flex justify-between">
           <AppLogo :page-title="pageTitle"/>
-          <button class="p-2" @click="(e) => emit('closeModal', e)">
+          <button class="p-2" @click="(e) => emit('closeModal')">
             <SvgClose class="w-4 h-4"/>
           </button>
         </div>
         <div>
           <ul>
-            <li class="flex items-center gap-1 px-2 py-1 hover:bg-background-400 rounded-md">
-              <SvgHome class="text-text-primary h-4 w-4"/>
-              <nuxt-link prefetch to="/">Главная</nuxt-link>
+            <li class="">
+              <nuxt-link class="px-2 py-1 flex items-center gap-1 hover:bg-background-400 rounded-md" prefetch to="/">
+                <SvgHome class="text-text-primary h-4 w-4"/>
+                Главная</nuxt-link>
             </li>
-            <li class="flex items-center gap-1 px-2 py-1 hover:bg-background-400 rounded-md">
-              <SvgInfo class="text-text-primary h-4 w-4"/>
-              <nuxt-link prefetch to="/about">О проекте</nuxt-link>
+            <li class="">
+              <nuxt-link class="px-2 py-1 flex items-center gap-1 hover:bg-background-400 rounded-md" prefetch to="/about">
+                <SvgInfo class="text-text-primary h-4 w-4"/>
+                О проекте</nuxt-link>
             </li>
           </ul>
         </div>

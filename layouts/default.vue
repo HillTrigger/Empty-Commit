@@ -7,7 +7,6 @@ const pageTitle = ref('Default Title');
 watch(
   () => route.path,
   (newPath) => {
-    console.log('Путь изменился:', newPath);
     pageTitle.value = getTitle(newPath);
   },
   { immediate: true }
