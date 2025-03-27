@@ -42,7 +42,7 @@ const { data: user } = useAsyncData(`user-${props.author}`, async () => {
 </script>
 
 <template>
-  <div class="bg-background-200 py-3 px-4  border border-border rounded-md w-full flex flex-col gap-2">
+  <div v-if="user" class="bg-background-200 py-3 px-4  border border-border rounded-md w-full flex flex-col gap-2">
     <div class="flex items-center gap-2">
       <div class="w-10 h-10 rounded-full overflow-hidden">
         <img :src="`https://directus.api.hilltrigger.ru/assets/${user.avatar}?width=256&height=256&fit=cover`" alt="ava">
