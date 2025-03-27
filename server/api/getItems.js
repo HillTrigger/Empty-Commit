@@ -5,7 +5,13 @@ export default defineEventHandler(async () => {
     const response = await $fetch('https://directus.api.hilltrigger.ru/items/posts', {
       headers: {
         Authorization: `Bearer ${config.apiKey}`, // Скрытый API-ключ
+			
       },
+			params: {
+				sort: '-id', // Сортировка по убыванию ID
+				// limit: 10,   // Ограничение количества записей (опционально)
+				// fields: 'id,title,date,author.*' // Выбор нужных полей (опционально)
+			}
     });
 
     if (!response || !response.data) {

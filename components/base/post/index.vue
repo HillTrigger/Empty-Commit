@@ -52,6 +52,6 @@ const { data: user } = useAsyncData(`user-${props.author}`, async () => {
         <span class="text-xs text-text-secondary">{{ date }}</span>
       </div>
     </div>
-    <div v-sanitize-html="postContent" class="bg-background-300 w-full rounded-md p-4"/>
+    <div v-sanitize-html="postContent" class="bg-background-300 w-full rounded-md p-4 markdown-body"/>
   </div>
 </template>

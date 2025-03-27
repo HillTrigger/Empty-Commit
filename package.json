@@ -15,6 +15,7 @@
     "@pinia/nuxt": "^0.10.1",
     "@radya/nuxt-dompurify": "^1.0.5",
     "axios": "^1.8.4",
+    "github-markdown-css": "^5.8.1",
     "markdown-it": "^14.1.0",
     "nuxt": "^3.16.1",
     "pinia": "^3.0.1",
