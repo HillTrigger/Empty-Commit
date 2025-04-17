@@ -63,7 +63,5 @@
         <blockquote class="mt-4 pl-4 border-l-4 border-textQuote italic text-textQuote max-w-md mx-auto">«Это не баг, это фича» — моя мантра.</blockquote>
       </section>
     </div>
-    <!-- Подпись -->
-    <p class=" ">P.S. — <span class="font-medium text-textAccent">HillTrigger</span>, человек, который <code class="bg-bgSecondary200 px-1 rounded">git push --force</code> и не краснеет.</p>
   </div>
 </template>
