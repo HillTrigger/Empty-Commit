@@ -1,6 +1,4 @@
 export function getTitle(path) {
-	console.log(path);
-	
 	switch (true) {
 		case path === '/':
 			return 'Главная';

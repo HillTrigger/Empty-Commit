@@ -1,11 +1,50 @@
 @use './fonts';
 
+.light {
+  --border-color: #d1d5db;
+  --text-color: #1f2937;
+  --text-accent: #4f46e5;
+  --text-secondary: #6b7280;
+  --text-quote: #9ca3af;
+  --bg-main: rgb(249, 250, 251);
+  --bg-main-rgb: 249, 250, 251;
+  --bg-secondary: rgb(255, 255, 255);
+  --bg-secondary-rgb: 255, 255, 255;
+  --bg-secondary-200: rgb(243, 244, 246);
+	--bg-secondary-200-rgb: 243, 244, 246;
+  --bg-secondary-300: rgba(129, 139, 152, 0.102);
+}
+.dark {
+  --border-color: #3d444d;
+  --text-color: #f0f6fc;
+  --text-accent: #4f46e5;
+  --text-secondary: #9198a1;
+  --text-quote: #6b7280;
+  --bg-main: rgb(1, 4, 9);
+  --bg-main-rgb: 1, 4, 9;
+  --bg-secondary: rgb(13, 17, 23);
+  --bg-secondary-rgb: 13, 17, 23;
+  --bg-secondary-200: rgb(21, 27, 35);
+  --bg-secondary-200-rgb: 21, 27, 35;
+  --bg-secondary-300: rgba(101, 108, 118, 0.2);
+}
+.dark .markdown-body, .light .markdown-body {
+	--fgColor-accent: var(--text-accent);
+	--fgColor-muted: var(--text-quote);
+	--borderColor-default: var(--text-quote);
+	--fgColor-default: var(--text-color);
+	--borderColor-muted: var(--text-quote);
+	--bgColor-default: var(--bg-secondary-200);
+}
+
+
 * {
   font-family: 'SegoeUI', sans-serif;
 }
 
 html, body {
-	background-color: #010409;
-	color: #f0f6fc;
+	background-color: var(--bg-main);
+	color: var(--text-color);
 }
+
 

@@ -42,16 +42,16 @@ const { data: user } = useAsyncData(`user-${props.author}`, async () => {
 </script>
 
 <template>
-  <div v-if="user" class="bg-background-200 py-3 px-4  border border-border rounded-md w-full flex flex-col gap-2">
+  <div v-if="user" class="bg-bgSecondary py-3 px-4  border border-borderColor rounded-md w-full flex flex-col gap-2">
     <div class="flex items-center gap-2">
       <div class="w-10 h-10 rounded-full overflow-hidden">
         <img :src="`https://directus.api.hilltrigger.ru/assets/${user.avatar}?width=256&height=256&fit=cover`" alt="ava">
       </div>
       <div class="flex flex-col">
         <span class="text-sm">{{ user.login }}</span>
-        <span class="text-xs text-text-secondary">{{ date }}</span>
+        <span class="text-xs text-textSecondary">{{ date }}</span>
       </div>
     </div>
-    <div v-sanitize-html="postContent" class="bg-background-300 w-full rounded-md p-4 markdown-body"/>
+    <div v-sanitize-html="postContent" class="w-full rounded-md p-4 markdown-body"/>
   </div>
 </template>

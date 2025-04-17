@@ -4,25 +4,16 @@ export default {
   theme: {
     extend: {
       colors: {
-				background: {
-					100: '#010409',
-					200: '#0d1117',
-					300: '#151b23',
-					400: '#656c7633',
-				},
-        blue: '#4493f8', // Основной синий (для ссылок, акцентов)
-        blueHover: '#1f6feb', // Ховер для ссылок и кнопок
-        green: '#238636', // Зеленый для успешных действий (например, success-уведомления)
-        purple: '#ab7df8', // Фиолетовый акцент (например, для деталей UI)
-        border: '#3d444d', // Границы элементов
-        buttonHover: {
-					100: '#3a8cfd5c',
-					200: '#656c7640'
-				}, // Фон кнопки при ховере
-        text: {
-          primary: '#f0f6fc', // Основной текст (заголовки, основной контент)
-          secondary: '#9198a1', // Второстепенный текст (подписи, пояснения)
-        },
+				borderColor : 'var(--border-color)',
+				textColor : 'var(--text-color)',
+				textAccent : 'var(--text-accent)',
+				textSecondary: 'var(--text-secondary)',
+				textQuote : 'var(--text-quote)',
+        bgMain: 'rgb(var(--bg-main-rgb) , <alpha-value>)',
+        bgSecondary: 'rgb(var(--bg-secondary-rgb) , <alpha-value>)',
+        bgSecondary200: 'rgb(var(--bg-secondary-200-rgb) , <alpha-value>)',
+        bgSecondary300: 'var(--bg-secondary-300)',
+        
       },
     },
   },
