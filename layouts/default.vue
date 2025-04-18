@@ -18,7 +18,7 @@ useHead({
 </script>
 
 <template>
-  <div>
+  <div class="flex flex-col min-h-screen">
     <AppHeader :page-title="pageTitle" />
     <main>
       <slot />

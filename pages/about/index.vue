@@ -3,15 +3,22 @@
 </script>
 
 <template>
-  <div class=" py-12 ">
+  <div class="bg-bgSecondary py-12 px-2">
+    <h1 class="text-4xl font-bold text-center mb-6 ">Empty Commit</h1>
+
     <!-- Основной контент -->
-    <div class="space-y-8 max-w-xl mx-auto px-4 sm:px-0 mb-12">
+    <div class="space-y-8 max-w-xl mx-auto px-2 sm:px-0 mb-12 py-4 bg-bgSecondary200 rounded-lg">
       <!-- Заголовок -->
-      <h1 class="text-4xl font-bold mb-2 text-center ">Empty Commit</h1>
       <h2 class="text-lg text-center ">Блог, в котором я учусь, ошибаюсь и иногда что-то нажимаю</h2>
       <!-- Вступление -->
       <section class="text-left max-w-md mx-auto">
-        <p>Привет, я <span class="font-medium text-textAccent">HillTrigger</span>, и это <strong>Empty Commit</strong> — мой личный дневник борьбы с Nuxt, Vue и вёрсткой.</p>
+        <p>Привет, я <NuxtLink
+          class="font-medium text-textAccent"
+          to="https://github.com/HillTrigger" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          external
+        >HillTrigger</NuxtLink>, и это <strong>Empty Commit</strong> — мой личный дневник борьбы с Nuxt, Vue и вёрсткой.</p>
       </section>
 
       <!-- Что здесь будет? -->
@@ -20,7 +27,7 @@
         <ul class="text-left space-y-2 max-w-md mx-auto list-disc pl-5">
           <li><strong>Мои грабли</strong>: ошибки, на которые я потратил 3 часа, а решение оказалось в одной строчке</li>
           <li><strong>Кривые, но рабочие костыли</strong>, которые почему-то сработали</li>
-          <li><strong>Случайные заметки</strong> о том, как заставить <code class="bg-gray-900 px-1 rounded">&lt;div&gt;</code> стоять ровно</li>
+          <li><strong>Случайные заметки</strong> о том, как заставить <code class="bg-bgSecondary300 px-1 rounded">&lt;div&gt;</code> стоять ровно</li>
           <li><strong>Скриншоты консоли с вопросиками</strong>, потому что «оно работало вчера»</li>
         </ul>
       </section>
@@ -37,19 +44,19 @@
         <ul class="text-left space-y-2 max-w-md mx-auto list-disc pl-5">
           <li>Умных советов (я сам в шоке, когда что-то работает)</li>
           <li>Теории (гуглите доки, я тут за эксперименты)</li>
-          <li>Серьёзности (всё на <code class="bg-gray-900 px-1 rounded">!important</code> и <code class="bg-bgSecondary200 px-1 rounded">position: absolute</code>)</li>
           <li>Дизайна (это для меня мрак, к сожалению у этого блога нет макета)</li>
         </ul>
       </section>
 
       <!-- Техническая сторона -->
-      <section class="max-w-md mx-auto">
-        <h3 class="text-xl font-semibold mb-3 text-center ">Техническая сторона</h3>
-        <p>Блог сделан на <strong>Nuxt 3 + Directus</strong>, потому что:</p>
-        <ol class="list-decimal pl-5 space-y-1">
-          <li>Мне сказали, что это модно,</li>
-          <li>Я пока не разобрался, как это удалить.</li>
-        </ol>
+      <section>
+        <h3 class="text-xl font-semibold mb-3 text-center ">Используемые инструменты</h3>
+        <ul class="text-left space-y-2 max-w-md mx-auto list-disc pl-5">
+          <li>Vue3</li>
+          <li>NuxtJS</li>
+          <li>Tailwind</li>
+          <li>Directus</li>
+        </ul>
       </section>
 
       <!-- Зачем читать? -->

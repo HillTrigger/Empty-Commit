@@ -1,5 +1,5 @@
 <template>
-  <footer class="border-t border-borderColor p-4 flex align-center">
+  <footer class="mt-auto border-t border-borderColor p-4 flex align-center">
     <p>Проект создан с целью изучения Vue и Nuxt. Автор: <NuxtLink
       class="font-medium text-textAccent"
       to="https://github.com/HillTrigger" 

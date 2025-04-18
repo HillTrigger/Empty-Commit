@@ -1,5 +1,5 @@
 <script setup>
-  defineProps({
+  const props = defineProps({
     flag: {
 			type: Boolean,
 			required: true,
@@ -12,15 +12,46 @@
 
   const emit = defineEmits(['closeModal']);
 
+	const body = ref();
+	const modal = ref(null);
+	
+	const isLocked = useScrollLock(body);
+	
+	watch(
+		() => props.flag,
+		() => {
+			if (props.flag) {
+				const paddingRight = window.innerWidth - document.querySelector('body').clientWidth;
+				document.querySelector('body').style.paddingRight = paddingRight + 'px';
+
+				setTimeout(() => {
+				modal.value.style.paddingRight = paddingRight + 16 + 'px';
+				});
+				
+				isLocked.value = true;
+				
+			} else {
+				isLocked.value = false;
+				document.querySelector('body').style.paddingRight = null;
+				modal.value.style.paddingRight = null;
+			}
+		}
+	);
   // function closeModal() {
   //   emit('update:flag', false);
   // }
+	onMounted(() => {
+		body.value = window;
+	});
 </script>
 
 <template>
   <transition name="navigation">
-    <div v-if="flag" class=" fixed right-0 top-0 bottom-0 left-0 flex  justify-end bg-bgMain bg-opacity-30" @click="(e) => emit('closeModal', e)">
-      <div class="navigation-body h-full w-80 bg-bgSecondary200 rounded-l-xl p-4 flex flex-col gap-4">
+    <div
+      v-if="flag"
+      class="z-10 fixed right-0 top-0 bottom-0 left-0 flex  justify-end bg-bgMain bg-opacity-30"
+      @click="(e) => emit('closeModal', e)">
+      <div ref="modal" class="navigation-body h-full w-80 bg-bgSecondary200 rounded-l-xl p-4 flex flex-col gap-4">
         <div class="flex justify-between">
           <AppLogo :page-title="pageTitle"/>
           <button class="p-2" @click="(e) => emit('closeModal')">
