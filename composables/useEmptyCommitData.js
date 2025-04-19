@@ -1,22 +1,22 @@
 export function useEmptyCommitData() {
   const getItems = async () => {
     try {
-      const data = await $fetch('/api/getItems');  // Теперь работает через серверный обработчик
+      const data = await $fetch('/api/getItems');
       return data;
     } catch (error) {
       console.error('Ошибка при получении данных:', error);
-      return null;  // Возвращаем null, если ошибка
+      return null;
     }
   };
 
 	const getItem = async (postId) => {
 		
     try {
-      const data = await $fetch(`/api/getItem?postId=${postId}`);  // Теперь работает через серверный обработчик
+      const data = await $fetch(`/api/getItem?postId=${postId}`);
       return data;
     } catch (error) {
       console.error('Ошибка при получении данных:', error);
-      return null;  // Возвращаем null, если ошибка
+      return null;
     }
   };
 

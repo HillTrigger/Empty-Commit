@@ -40,8 +40,9 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     '@radya/nuxt-dompurify',
     '@nuxtjs/color-mode',
-    '@vueuse/nuxt'
+    '@vueuse/nuxt',
   ],
+
   colorMode: {
     preference: 'dark', // default value of $colorMode.preference
     fallback: 'dark', // fallback value if not system preference found

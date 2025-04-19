@@ -12,7 +12,7 @@ const { data: posts } = useAsyncData('posts', async () => {
   }
 },{
     server: true
-  });
+});
 
 </script>
 
