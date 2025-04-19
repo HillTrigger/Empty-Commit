@@ -13,7 +13,6 @@ export function useEmptyCommitData() {
 		
     try {
       const data = await $fetch(`/api/getItem?postId=${postId}`);  // Теперь работает через серверный обработчик
-		console.log(data);
       return data;
     } catch (error) {
       console.error('Ошибка при получении данных:', error);

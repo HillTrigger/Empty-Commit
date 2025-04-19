@@ -55,6 +55,6 @@ const { data: user } = useAsyncData(`user-${props.author}`, async () => {
         {{ title }}
       </NuxtLink>
     </div>
-    <div v-sanitize-html="postContent" class="w-full rounded-md p-4 markdown-body"/>
+    <div v-sanitize-html="postContent" class="w-full max-w-full rounded-md p-4 bg-bgSecondary200 markdown-body prose sm:prose-xl"/>
   </div>
 </template>

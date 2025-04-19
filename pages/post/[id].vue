@@ -12,6 +12,8 @@ const {data: post} = useAsyncData('posts', async () => {
 },{
     server: true
   });
+
+	useMetaTags({description: post.description, image: false, url: `https://blog.hilltrigger.ru/post/${post.id}`});
 </script>
 
 <template>
@@ -19,7 +21,7 @@ const {data: post} = useAsyncData('posts', async () => {
     <div v-if="!post && post !== null">Loading...</div>
     <div v-if="post === null">Error</div>
     <BasePost
-      v-if="post"
+      v-if="post && typeof post === 'object' && post.id"
       :id="post.id"
       :key="post.id"
       :author="post.author"

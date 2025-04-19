@@ -15,7 +15,21 @@ export default {
         bgSecondary300: 'var(--bg-secondary-300)',
         
       },
+			typography: ({ theme }) => ({
+        DEFAULT: {
+          css: {
+						'--tw-prose-quote-borders': theme('colors.textQuote'),
+						'--tw-prose-bold': theme('colors.textColor'),
+            '--tw-prose-body': theme('colors.textColor'),
+            '--tw-prose-headings': theme('colors.textColor'),
+            '--tw-prose-quotes': theme('colors.textQuote'),
+            '--tw-prose-links': theme('colors.textAccent'),
+          },
+        },
+      }),
     },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/typography') // Добавьте плагин здесь
+  ],
 };
