@@ -19,15 +19,18 @@
     "@vueuse/nuxt": "^13.1.0",
     "axios": "^1.8.4",
     "github-markdown-css": "^5.8.1",
+    "glob": "^11.0.1",
     "highlight.js": "^11.11.1",
     "markdown-it": "^14.1.0",
     "marked": "^15.0.8",
-    "nuxt": "^3.16.1",
+    "nuxt": "3.13.2",
     "pinia": "^3.0.1",
+    "rimraf": "^6.0.1",
     "rss": "^1.2.2",
     "sanitize-html": "^2.16.0",
     "vue": "^3.5.13",
-    "vue-router": "^4.5.0"
+    "vue-router": "^4.5.0",
+    "whatwg-url": "^14.2.0"
   },
   "devDependencies": {
     "@nuxt/eslint": "^1.2.0",
@@ -35,6 +38,11 @@
     "@types/rss": "^0.0.32",
     "@types/sanitize-html": "^2.15.0",
     "dotenv": "^16.4.7",
-    "sass": "^1.86.0"
-  }
+    "sass": "^1.86.0",
+    "unenv": "^1.10.0"
+  },
+	"overrides": {
+		"nitropack": "2.10.4",
+		"h3": "1.15.0"
+	}
 }

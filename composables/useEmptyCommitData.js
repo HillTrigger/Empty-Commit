@@ -20,13 +20,14 @@ export function useEmptyCommitData() {
     }
   };
 
-  const getUser = async (login) => {
+  const getUser = async (email) => {
     try {
-      const data = await $fetch(`/api/getUser?login=${login}`);
-      return data || null;  // Возвращаем null, если пользователь не найден
+      const data = await $fetch(`/api/getUser?email=${email}`);
+			if(data.length === 0) {return null;}
+      return data || null;
     } catch (error) {
       console.error('Ошибка при получении пользователя:', error);
-      return null;  // Возвращаем null в случае ошибки
+      return null;
     }
   };
 

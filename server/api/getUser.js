@@ -1,18 +1,16 @@
 // server/api/getUser.js
 
 export default defineEventHandler(async (event) => {
-  const config = useRuntimeConfig(); // Получаем конфигурацию
-  const query = getQuery(event);  // Извлекаем параметры из URL
+  const config = useRuntimeConfig();
+  const query = getQuery(event);
 
-  // Проверка на наличие параметра login
-  if (!query.login) {
+  if (!query.email) {
     throw createError({ 
       statusCode: 400, 
-      statusMessage: 'Login is required' 
+      statusMessage: 'Email is required' 
     });
   }
 
-  // Проверка на наличие API-ключа в конфигурации
   if (!config.apiKey) {
     throw createError({ 
       statusCode: 500, 
@@ -20,7 +18,7 @@ export default defineEventHandler(async (event) => {
     });
   }
   try {
-    const response = await $fetch(`https://directus.api.hilltrigger.ru/items/users?filter[login][_eq]=${query.login}`, {
+    const response = await $fetch(`https://directus.api.hilltrigger.ru/users?filter[email][_eq]=${query.email}`, {
       headers: {
         Authorization: `Bearer ${config.apiKey}`,
       },

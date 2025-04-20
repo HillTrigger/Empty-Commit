@@ -1,33 +1,25 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  devServer: {
-    host: '0.0.0.0',
-    port: 3000 // или любой другой порт
+	ssr: true,
+	nitro: {
+    preset: 'node-server' // важно для серверного рендеринга
   },
 	app: {
     head: {
       charset: 'utf-8',
       viewport: 'width=device-width, initial-scale=1',
       meta: [
-        { name: 'description', content: 'Empty Commit — блог фронтенд-разработчика, который учится на своих ошибках. Здесь вы найдете кривые костыли, грабли Nuxt и Vue, внезапные фиксы и честные заметки о том, как divы сводят с ума. Без теории, зато с !important и position: absolute.' },
-        { name: 'keywords', content: `Frontend, разработка, блог, Vue ошибки, Верстка, 
-					Ошибки, программирование, костыли, код, 
-					Консольные ошибки, div, position, absolute, 
-					important, хаки, Проблемы с Nuxt, Directus CMS, Безболезненный код, 
-					Код без теории, Практический фронтенд,
-					Это не баг это фича, git push force, Блог начинающего разработчика, 
-					Заметки фронтенд-разработчика, Как не надо писать код, Смешные баги в коде, 
-					Реальный опыт разработки, Программирование без правил, Веб-разработка без стресса, 
-					Почему мой код не работает, Как я починил баг, Гайды для тех кто не читает гайды` },
+				{ name: 'description', content: 'Empty Commit — личный блог фронтенд‑разработчика, который учится на собственных ошибках. Здесь вы найдёте кривые костыли, ловушки Nuxt и Vue, внезапные фиксы и честные заметки о том, как div‑ы сводят с ума. Без лишней теории, зато с !important и position:absolute.' },
+				{ name: 'keywords', content: 'Frontend, веб‑разработка, разработка интерфейсов, вёрстка, адаптивная вёрстка, кроссбраузерность, CSS‑хаки, Flex, Grid, position:absolute, !important, CSS‑трикcы, HTML, JavaScript, TypeScript, Vue.js, Vue 3, Composition API, Nuxt.js, SSR, Directus CMS, Headless CMS, API‑интеграция, производительность фронтенда, оптимизация, анти‑паттерны, костыли, багфикс, фикс багов, смешные баги, консольные ошибки, ловушки кода, код без теории, практический фронтенд, безболезненный код, git push --force, безопасный git‑workflow, блог фронтенд‑разработчика, заметки разработчика, гайды для ленивых, Empty Commit, личный блог, RSS, feed, HillTrigger' },
         { name: 'author', content: 'HillTrigger' },
       ]
     }
   },
   compatibilityDate: '2024-11-01',
     runtimeConfig: {
-    apiKey: '', // Скрытый API-ключ (только сервер)
+    apiKey: 'LTRsa-3oU2bVj9lGHGyR7_t-iffYxKuG',
     public: {
-      apiUrl: '', // Можно использовать на клиенте
+      apiUrl: 'https://directus.api.hilltrigger.ru',
     },
         
   },
@@ -53,5 +45,20 @@ export default defineNuxtConfig({
     classSuffix: '',
     storage: 'localStorage', // or 'sessionStorage' or 'cookie'
     storageKey: 'nuxt-color-mode'
+  },
+  // Добавьте эти настройки для обработки Vite-предупреждений
+  vite: {
+    build: {
+      rollupOptions: {
+        external: [
+          'fs', 'path', 'http', 'https', 'url', 'net', 'tls',
+          'zlib', 'crypto', 'stream', 'util', 'os', 'vm',
+          'child_process', 'assert'
+        ]
+      }
+    },
+    optimizeDeps: {
+      exclude: ['jsdom']
+    }
   }
 });

@@ -25,8 +25,8 @@ export default defineEventHandler(async (event) => {
     const feed = new RSS({
       title: 'Мой блог',
       description: 'Свежие статьи и новости',
-      site_url: 'http://192.168.1.155:3000',
-      feed_url: 'http://192.168.1.155:3000/rss.xml',
+      site_url: `${process.env.APP_LINK}`,
+      feed_url: `${process.env.APP_LINK}/rss`,
       pubDate: new Date(),
       language: 'ru',
       custom_namespaces: {
@@ -36,7 +36,7 @@ export default defineEventHandler(async (event) => {
     });
 
     for (const post of posts) {
-      const postUrl = `http://192.168.1.155:3000/post/${post.id}`;
+      const postUrl = `https://blog.hilltrigger.ru/post/${post.id}`;
       
 			const htmlContent = marked(post.content || post.description) as string;
       

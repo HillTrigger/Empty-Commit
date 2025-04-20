@@ -11,7 +11,7 @@ export function useMetaTags({description, image, url}) {
 		{ property: 'og:site_name', content: 'Empty Commit' },
 		{ property: 'og:locale', content: 'ru_RU' },
 		{ name: 'twitter:card', content: 'summary_large_image' },
-		{ name: 'twitter:title', content: title },
+		{ name: 'twitter:title', content: pageTitle },
 		{ name: 'twitter:description', content: description },
 	];
 

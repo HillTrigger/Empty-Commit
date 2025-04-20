@@ -25,7 +25,7 @@ const { data: posts } = useAsyncData('posts', async () => {
         v-for="post in posts"
         :id="post.id"
         :key="post.id"
-        :author="post.author"
+        :email="post.email"
         :date="post.date"
         :title="post.title"
         :description="post.description"
