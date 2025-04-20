@@ -2,7 +2,7 @@
 export default defineNuxtConfig({
 	ssr: true,
 	nitro: {
-    preset: 'node-server' // важно для серверного рендеринга
+    preset: 'node-server'
   },
 	app: {
     head: {
@@ -17,7 +17,7 @@ export default defineNuxtConfig({
   },
   compatibilityDate: '2024-11-01',
     runtimeConfig: {
-    apiKey: 'LTRsa-3oU2bVj9lGHGyR7_t-iffYxKuG',
+    apiKey: process.env.NUXT_API_KEY,
     public: {
       apiUrl: 'https://directus.api.hilltrigger.ru',
     },
@@ -36,17 +36,16 @@ export default defineNuxtConfig({
   ],
 
   colorMode: {
-    preference: 'dark', // default value of $colorMode.preference
-    fallback: 'dark', // fallback value if not system preference found
+    preference: 'dark',
+    fallback: 'dark',
     hid: 'nuxt-color-mode-script',
     globalName: '__NUXT_COLOR_MODE__',
     componentName: 'ColorScheme',
     classPrefix: '',
     classSuffix: '',
-    storage: 'localStorage', // or 'sessionStorage' or 'cookie'
+    storage: 'localStorage',
     storageKey: 'nuxt-color-mode'
   },
-  // Добавьте эти настройки для обработки Vite-предупреждений
   vite: {
     build: {
       rollupOptions: {
