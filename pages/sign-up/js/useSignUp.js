@@ -1,7 +1,8 @@
-export function useSingUp() {
+export function useSingUp(modalStates) {
 const {createUser} = useEmptyCommitData();
 
 	const loading = ref(false);
+	const errorsText = ref([]);
 	
   const signUp = async () => {
     if (firstNameErrors.value.length > 0 || 
@@ -26,6 +27,8 @@ const {createUser} = useEmptyCommitData();
       return response;
     } catch (error) {
       console.log(error.data);
+			errorsText.value = error.data.errors.map(el => el.message);
+			modalStates.value.ModalError = true;
 			// for (const error of error.data.errors) {
 				
 			// }
@@ -134,6 +137,6 @@ const {createUser} = useEmptyCommitData();
 	});
 
 	return {
-		firstName, firstNameErrors, lastName, lastNameErrors, email, emailErrors, password, passwordErrors, signUp, loading
+		firstName, firstNameErrors, lastName, lastNameErrors, email, emailErrors, password, passwordErrors, signUp, loading,  errorsText
 	};
 }

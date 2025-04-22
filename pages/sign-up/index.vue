@@ -1,15 +1,16 @@
 <script setup>
 import { useSingUp } from './js/useSignUp';
 
-// function signUp(e) {
-	
-// }
-
 definePageMeta({
   layout: 'empty'
 });
 
-const {firstName, firstNameErrors, lastName, lastNameErrors, email, emailErrors, password, passwordErrors, signUp, loading} = useSingUp();
+const modalStates = ref({
+    ModalError: false,
+  });
+	const { closeModal } = useModalAction(modalStates);
+
+const {firstName, firstNameErrors, lastName, lastNameErrors, email, emailErrors, password, passwordErrors, signUp, loading, errorsText} = useSingUp(modalStates);
 
 </script>
 
@@ -54,5 +55,11 @@ const {firstName, firstNameErrors, lastName, lastNameErrors, email, emailErrors,
     <BaseButton type="submit" class="w-full h-12">
       Зарегистрироваться
     </BaseButton>
+    <teleport to='body'>
+      <ModalError
+        v-model:flag="modalStates.ModalError"
+        :errors="errorsText"
+        @close-modal="(e) => closeModal('ModalError', e)"/>
+    </teleport>
   </form>
 </template>
