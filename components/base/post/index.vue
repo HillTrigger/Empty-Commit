@@ -39,10 +39,6 @@ const { data: user } = useAsyncData(`user-${props.email}`, async () => {
 },{
     server: true 
   });
-	onMounted(() => {
-		console.log(user);
-		
-	});
 </script>
 
 <template>

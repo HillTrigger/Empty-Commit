@@ -1,0 +1,55 @@
+export default defineEventHandler(async (event) => {
+  const body = await readBody(event);
+  console.log('Received data:', body);
+
+  // Проверка обязательных полей
+  // if (!body.email || !body.password || !body.firstName || !body.lastName) {
+  //   throw createError({
+  //     statusCode: 400,
+  //     statusMessage: 'Missing required fields',
+  //     data: {
+  //       fields: {
+  //         email: !body.email,
+  //         password: !body.password,
+  //         firstName: !body.firstName,
+  //         lastName: !body.lastName
+  //       },
+  //       message: 'Заполните все обязательные поля'
+  //     }
+  //   });
+  // }
+
+  try {
+    const response = await $fetch('https://directus.api.hilltrigger.ru/users', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        email: body.email,
+        password: body.password,
+        role: process.env.BLOG_USERS_ROLE,
+        first_name: body.firstName,
+        last_name: body.lastName
+      })
+    });
+
+    return { success: true, data: response };
+
+  } catch (error) {
+    console.error('Directus API error:', error);
+    
+    // Формируем понятный объект ошибки для фронтенда
+    const errorData = {
+      statusCode: error.response?.status || 500,
+      data: error.response,
+      isDirectusError: true
+    };
+    
+    throw createError({
+      statusCode: errorData.statusCode,
+      statusMessage: errorData.message,
+      data: errorData // Передаём дополнительные данные об ошибке
+    });
+  }
+});

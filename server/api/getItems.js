@@ -3,10 +3,10 @@ export default defineEventHandler(async () => {
 
   try {
     const response = await $fetch('https://directus.api.hilltrigger.ru/items/posts', {
-      headers: {
-        Authorization: `Bearer ${config.apiKey}`, // Скрытый API-ключ
+      // headers: {
+      //   Authorization: `Bearer ${config.apiKey}`, // Скрытый API-ключ
 			
-      },
+      // },
 			params: {
 				sort: '-id', // Сортировка по убыванию ID
 				// limit: 10,   // Ограничение количества записей (опционально)

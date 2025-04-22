@@ -9,8 +9,7 @@ export function useEmptyCommitData() {
     }
   };
 
-	const getItem = async (postId) => {
-		
+  const getItem = async (postId) => {
     try {
       const data = await $fetch(`/api/getItem?postId=${postId}`);
       return data;
@@ -23,7 +22,7 @@ export function useEmptyCommitData() {
   const getUser = async (email) => {
     try {
       const data = await $fetch(`/api/getUser?email=${email}`);
-			if(data.length === 0) {return null;}
+      if (data?.length === 0) {return null;}
       return data || null;
     } catch (error) {
       console.error('Ошибка при получении пользователя:', error);
@@ -31,5 +30,25 @@ export function useEmptyCommitData() {
     }
   };
 
-  return { getItems, getUser, getItem };
+  const createUser = async (userData) => {
+    try {
+      const response = await $fetch('/api/createUser', {
+        method: 'POST',
+        body: JSON.stringify(userData),
+      });
+
+      if (response?.status === 204) {
+        return { success: true };
+      }
+
+      return response || { success: true };
+    } catch (error) {
+
+			throw createError({
+				data: error.data.data.data._data // Передаём дополнительные данные об ошибке
+			});
+    }
+  };
+
+  return { getItems, getUser, getItem, createUser };
 }

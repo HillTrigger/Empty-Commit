@@ -8,8 +8,8 @@
       external
     >HillTrigger</NuxtLink>
     </p>
-    <NuxtLink target="_blank" to="rss" class="hover:text-orange-500">
+    <a target="_blank" href="rss" class="hover:text-orange-500">
       <SvgRss class="w-4 h-4 min-w-4 min-h-4"/>
-    </NuxtLink>
+    </a>
   </footer>
 </template>
