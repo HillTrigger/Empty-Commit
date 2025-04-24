@@ -27,7 +27,7 @@
 
 <template>
   <transition name="error">
-    <div  v-if="flag" class="z-50 absolute top-0 bottom-0 left-0 right-0 flex flex-col items-center justify-center"  @click="(e) => emit('closeModal', e)">
+    <div  v-if="flag" class="z-50 absolute top-0 bottom-0 left-0 right-0  flex flex-col items-center justify-center"  @click="(e) => emit('closeModal', e)">
       <div class="bg-red-500 rounded-xl p-4 text-center">
         <ul>
           <li v-for="(error, index) in errors" :key="index" class="text-base">{{ error }}</li>

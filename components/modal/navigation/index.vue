@@ -22,7 +22,7 @@
   <transition name="navigation">
     <div
       v-if="flag"
-      class="z-10 fixed right-0 top-0 bottom-0 left-0 flex  justify-end bg-bgMain bg-opacity-30"
+      class="z-40 fixed right-0 top-0 bottom-0 left-0 flex  justify-end bg-bgMain bg-opacity-30"
       @click="(e) => emit('closeModal', e)">
       <div ref="modal" class="navigation-body h-full w-80 bg-bgSecondary200 rounded-l-xl p-4 flex flex-col gap-4">
         <div class="flex justify-between">

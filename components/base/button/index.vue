@@ -9,13 +9,15 @@ defineProps({
     default: '',
   }
 });
+
+const btnClasses = 'w-auto h-8 border border-borderColor p-1 rounded-md active:bg-bgSecondary text-center';
 </script>
 
 <template>
-  <nuxt-link v-if="isLink" class="w-auto h-8 border border-borderColor p-1 rounded-md active:bg-bgSecondary" :to="to">
+  <nuxt-link v-if="isLink" :class="btnClasses" :to="to">
     <slot/>
   </nuxt-link>
-  <button v-else class="w-auto h-8 border border-borderColor p-1 rounded-md active:bg-bgSecondary">
+  <button v-else :class="btnClasses">
     <slot/>
   </button>
 </template>

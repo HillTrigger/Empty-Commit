@@ -18,7 +18,7 @@
 </script>
 
 <template>
-  <header class="border-b border-borderColor p-4 flex justify-between">
+  <header class="relative z-10 border-b border-borderColor p-4 flex justify-between">
     <AppLogo :page-title="pageTitle"/>
     <div class="flex align-center gap-2">
       <BaseButton  :is-link="true" to="/sign-up">
