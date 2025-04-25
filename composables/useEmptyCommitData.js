@@ -19,9 +19,9 @@ export function useEmptyCommitData() {
     }
   };
 
-  const getUser = async (email) => {
+  const getUser = async (key) => {
     try {
-      const data = await $fetch(`/api/getUser?email=${email}`);
+      const data = await $fetch(`/api/getUser?key=${key}`);
       if (data?.length === 0) {return null;}
       return data || null;
     } catch (error) {

@@ -12,10 +12,6 @@ const props = defineProps({
     type: String,
 		required: true,
   },
-	email: {
-    type: String,
-		required: true,
-  },
 	content: {
     type: String,
 		required: true,
@@ -23,14 +19,20 @@ const props = defineProps({
 	date: {
     type: String,
 		required: true,
-  }
+  },
+	keyAuthor: {
+    type: String,
+		required: true,
+  },
 });
 
 const postContent = computed(() => renderMarkdown(props.content));
 
-const { data: user } = useAsyncData(`user-${props.email}`, async () => {
+const { data: user } = useAsyncData(`user-${props.keyAuthor}`, async () => {
   try {
-    const result = await getUser(props.email);
+    const result = await getUser(props.keyAuthor);
+		console.log(result);
+		
     return result || [];
   } catch (err) {
     console.error('Ошибка при получении данных:', err);

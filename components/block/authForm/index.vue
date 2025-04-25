@@ -21,10 +21,19 @@ const { closeModal } = useModalAction(modalStates);
 
 const {firstName, firstNameErrors, lastName, lastNameErrors, email, emailErrors, password, passwordErrors, signUp, loading, errorsText} = useAuthForm(modalStates);
 
+
+const result = ref(false);
+
+const login = async () => {
+    const response = await $directus.login(email.value, password.value);
+    localStorage.setItem('directus_auth', JSON.stringify(response));
+    result.value = true;
+};
 </script>
 
 <template>
-  <form class="lg:max-w-96 mx-auto items-center bg-bgSecondary300 absolute top-0 bottom-0 left-0 right-0 flex p-4 flex-col justify-center lg:mt-16 lg:rounded-xl lg:relative" @submit.prevent="signUp">
+  <div v-if="result">Авторизован</div>
+  <form v-else class="lg:max-w-96 mx-auto items-center bg-bgSecondary300 absolute top-0 bottom-0 left-0 right-0 flex p-4 flex-col justify-center lg:mt-16 lg:rounded-xl lg:relative"  @submit.prevent="login">
     <h4 class="text-3xl mb-8">{{ title }}</h4>
     <div class="w-full flex flex-col gap-2 mb-4">
       <BaseInput

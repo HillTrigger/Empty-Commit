@@ -2,7 +2,16 @@
 export default defineNuxtConfig({
     ssr: true,
     nitro: {
-    preset: 'node-server'
+    preset: 'node-server',
+		routeRules: {
+      '/api/**': {
+        cors: true,
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Methods': 'GET,POST,PUT,DELETE'
+        }
+      }
+    }
   },
     app: {
     head: {
@@ -27,7 +36,7 @@ export default defineNuxtConfig({
   },
   devtools: { enabled: true },
     css: ['~/assets/styles/main.scss'],
-  modules: ['@nuxtjs/tailwindcss', '@nuxt/eslint', '@formkit/auto-animate', '@pinia/nuxt', '@radya/nuxt-dompurify', '@nuxtjs/color-mode', '@vueuse/nuxt', '@sidebase/nuxt-auth', 'nuxt-directus'],
+  modules: ['@nuxtjs/tailwindcss', '@nuxt/eslint', '@formkit/auto-animate', '@pinia/nuxt', '@radya/nuxt-dompurify', '@nuxtjs/color-mode', '@vueuse/nuxt'],
 
   colorMode: {
     preference: 'dark',

@@ -24,7 +24,7 @@ const {data: post} = useAsyncData('posts', async () => {
       v-if="post && typeof post === 'object' && post.id"
       :id="post.id"
       :key="post.id"
-      :email="post.email"
+      :key-author="post.author.key"
       :date="post.date"
       :title="post.title"
       :description="post.description"

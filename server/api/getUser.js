@@ -4,10 +4,10 @@ export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig();
   const query = getQuery(event);
 
-  if (!query.email) {
+  if (!query.key) {
     throw createError({ 
       statusCode: 400, 
-      statusMessage: 'Email is required' 
+      statusMessage: 'Key User is required' 
     });
   }
 
@@ -18,7 +18,7 @@ export default defineEventHandler(async (event) => {
     });
   }
   try {
-    const response = await $fetch(`https://directus.api.hilltrigger.ru/users?filter[email][_eq]=${query.email}`, {
+    const response = await $fetch(`https://directus.api.hilltrigger.ru/users/${query.key}`, {
       headers: {
         Authorization: `Bearer ${config.apiKey}`,
       },
@@ -28,7 +28,7 @@ export default defineEventHandler(async (event) => {
     //   return null;
     // }
 
-    return response.data[0];
+    return response.data;
   } catch (error) {
     console.error('Error fetching user:', error);
     throw createError({ 
