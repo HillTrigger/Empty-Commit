@@ -14,7 +14,7 @@ const {createUser} = useEmptyCommitData();
 		}
 
 		loading.value = true;
-//  TODO вынести логику в пропс
+
 		try {
 			const response = await createUser({
 				firstName: firstName.value,
@@ -29,9 +29,6 @@ const {createUser} = useEmptyCommitData();
 			console.log(error.data);
 			errorsText.value = error.data.errors.map(el => el.message);
 			modalStates.value.ModalError = true;
-			// for (const error of error.data.errors) {
-				
-			// }
 			
 		} finally {
 			loading.value = false;

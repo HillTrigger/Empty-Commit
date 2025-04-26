@@ -1,6 +1,6 @@
 export default defineEventHandler(async (event) => {
   const body = await readBody(event);
-  console.log('Received data:', body);
+  // console.log('Received data:', body);
 
   // Проверка обязательных полей
   // if (!body.email || !body.password || !body.firstName || !body.lastName) {
@@ -20,7 +20,7 @@ export default defineEventHandler(async (event) => {
   // }
 
   try {
-    const response = await $fetch('https://directus.api.hilltrigger.ru/users', {
+    const response = await $fetch('https://directus.api.hilltrigger.ru/users/register', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -28,7 +28,6 @@ export default defineEventHandler(async (event) => {
       body: JSON.stringify({
         email: body.email,
         password: body.password,
-        role: process.env.BLOG_USERS_ROLE,
         first_name: body.firstName,
         last_name: body.lastName
       })
@@ -39,7 +38,6 @@ export default defineEventHandler(async (event) => {
   } catch (error) {
     console.error('Directus API error:', error);
     
-    // Формируем понятный объект ошибки для фронтенда
     const errorData = {
       statusCode: error.response?.status || 500,
       data: error.response,
@@ -49,7 +47,7 @@ export default defineEventHandler(async (event) => {
     throw createError({
       statusCode: errorData.statusCode,
       statusMessage: errorData.message,
-      data: errorData // Передаём дополнительные данные об ошибке
+      data: errorData 
     });
   }
 });

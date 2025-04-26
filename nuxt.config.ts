@@ -13,6 +13,9 @@ export default defineNuxtConfig({
       }
     }
   },
+	// routeRules: {
+	// 	'/directus/**': { proxy: process.env.DIRECTUS_URL },
+	// },
     app: {
     head: {
       charset: 'utf-8',

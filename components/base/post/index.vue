@@ -31,7 +31,6 @@ const postContent = computed(() => renderMarkdown(props.content));
 const { data: user } = useAsyncData(`user-${props.keyAuthor}`, async () => {
   try {
     const result = await getUser(props.keyAuthor);
-		console.log(result);
 		
     return result || [];
   } catch (err) {
