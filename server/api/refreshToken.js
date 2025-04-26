@@ -12,18 +12,24 @@ export default defineEventHandler(async (event) => {
   }
 
   try {
-    const response = await $fetch('https://directus.api.hilltrigger.ru/auth/refresh', {
+		console.log(body);
+
+    const {data} = await $fetch('https://directus.api.hilltrigger.ru/auth/refresh', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        refresh_token: body.refresh_token
+        refresh_token: body.refresh_token,
+				mode: 'json'
       })
     });
+		
 
-    return { success: true, data: response };
+    return { success: true, data };
   } catch (error) {
+		console.log(error);
+		
     console.error('Ошибка при рефреше токена:', error);
 
     throw createError({

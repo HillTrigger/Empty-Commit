@@ -1,6 +1,6 @@
-
 <script setup lang="js">
 import { useAuthForm } from './js/useAuthForm';
+const { $isAuthenticated } = useNuxtApp();
 
 const props = defineProps({
 	isFullForm: {
@@ -29,18 +29,36 @@ const {firstName, firstNameErrors, lastName, lastNameErrors, email, emailErrors,
 //     localStorage.setItem('directus_auth', JSON.stringify(response));
 //     result.value = true;
 // };
-const handleSubmit = () => {
-  if (props.isFullForm) {
-    signUp();
-  } else {
-    signIn();
+const handleSubmit = async () => {
+  try {
+    if (props.isFullForm) {
+      await signUp(); // Добавьте await
+    } else {
+      await signIn(); // Добавьте await
+    }
+
+    const isAuth = await $isAuthenticated();
+    if (!isAuth) {
+      throw new Error('Authentication failed');
+    }
+
+    if (props.isFullForm) {
+      navigateTo('/sign-in');
+    } else {
+      navigateTo('/');
+    }
+  } catch (error) {
+    console.error('Auth error:', error);
   }
 };
 </script>
 
 <template>
   <!-- <div v-if="result">Авторизован</div> -->
-  <form class="lg:max-w-96 mx-auto items-center  absolute top-0 bottom-0 left-0 right-0 flex p-4 flex-col justify-center lg:mt-16 lg:rounded-xl lg:relative"  @submit.prevent="handleSubmit">
+  <form
+    class="lg:max-w-96 mx-auto items-center absolute top-0 bottom-0 left-0 right-0 flex p-4 flex-col justify-center lg:mt-16 lg:rounded-xl lg:relative"
+    @submit.prevent="handleSubmit"
+  >
     <h4 class="text-3xl mb-8">{{ title }}</h4>
     <div class="w-full flex flex-col gap-2 mb-4">
       <BaseInput
@@ -86,7 +104,8 @@ const handleSubmit = () => {
       v-if="isFullForm"
       :is-link="true"
       to="/sign-in"
-      class="w-full h-12 mt-2">
+      class="w-full h-12 mt-2"
+    >
       Уже зарегистрированы? <span class="text-textAccent">Войти</span>
     </BaseButton>
     <BaseButton
@@ -99,11 +118,12 @@ const handleSubmit = () => {
     <BaseButton :is-link="true" to="/" class="w-full h-12 mt-2">
       На главную
     </BaseButton>
-    <teleport to='body'>
+    <teleport to="body">
       <ModalError
         v-model:flag="modalStates.ModalError"
         :errors="errorsText"
-        @close-modal="(e) => closeModal('ModalError', e)"/>
+        @close-modal="(e) => closeModal('ModalError', e)"
+      />
     </teleport>
   </form>
 </template>

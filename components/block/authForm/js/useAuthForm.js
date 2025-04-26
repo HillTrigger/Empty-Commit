@@ -1,6 +1,5 @@
 export function useAuthForm(modalStates, isFullForm) {
 const {createUser, loginUser} = useEmptyCommitData();
-const { $directus } = useNuxtApp();
 
 	const loading = ref(false);
 	const errorsText = ref([]);

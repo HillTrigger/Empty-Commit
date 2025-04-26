@@ -39,7 +39,7 @@ export default defineNuxtConfig({
   },
   devtools: { enabled: true },
     css: ['~/assets/styles/main.scss'],
-  modules: ['@nuxtjs/tailwindcss', '@nuxt/eslint', '@formkit/auto-animate', '@pinia/nuxt', '@radya/nuxt-dompurify', '@nuxtjs/color-mode', '@vueuse/nuxt'],
+  modules: ['@pinia/nuxt', '@nuxtjs/tailwindcss', '@nuxt/eslint', '@formkit/auto-animate', '@pinia/nuxt', '@radya/nuxt-dompurify', '@nuxtjs/color-mode', '@vueuse/nuxt'],
 
   colorMode: {
     preference: 'dark',

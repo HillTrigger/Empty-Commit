@@ -15,15 +15,23 @@
   	colorMode.preference = colorMode.value === 'dark' ? 'light' : 'dark';
 	};
 
+	const { $authStore, $logout } = useNuxtApp();
+	
+
 </script>
 
 <template>
   <header class="relative z-10 border-b border-borderColor p-4 flex justify-between">
     <AppLogo :page-title="pageTitle"/>
     <div class="flex align-center gap-2">
-      <BaseButton  :is-link="true" to="/sign-in">
-        Войти
-      </BaseButton>
+      <client-only>
+        <BaseButton v-if="!$authStore.userIsAuthenticated"  :is-link="true" to="/sign-in">
+          Войти
+        </BaseButton>
+        <BaseButton v-else @click="$logout">
+          Выйти
+        </BaseButton>
+      </client-only>
       <client-only>
         <BaseButton @click="toggleColorMode">
           <SvgMoon v-if="colorMode.value === 'dark'" class="w-full h-full object-cover"/>

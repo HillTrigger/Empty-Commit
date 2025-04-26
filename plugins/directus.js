@@ -7,7 +7,10 @@ import {
 	authentication,
 } from '@directus/sdk';
 
+
 export default defineNuxtPlugin(() => {
+	const { $authStore } = useNuxtApp();
+	
 	class NuxtCookieStorage {
 			cookie = useCookie('directus-data');
 			get() {
@@ -23,7 +26,7 @@ export default defineNuxtPlugin(() => {
 	const directus = createDirectus(
 			'https://directus.api.hilltrigger.ru',
 	)
-	.with(authentication('cookie', { credentials: 'include', storage }))
+	.with(authentication('json', { credentials: 'include', storage }))
 	.with(rest({ credentials: 'include' }));
 
 	
@@ -35,14 +38,18 @@ export default defineNuxtPlugin(() => {
 					refresh_token: refresh_token,
 				},
 			});
-			console.log(data.data);
+
+			if (!data) {
+				console.error('Не получили данные при обновлении токена');
+				return false;
+			}
 			
 
 			const directusData = useCookie('directus-data');
 			directusData.value = {
-				access_token: data.data.access_token,
-				refresh_token: data.data.refresh_token,
-				expires_at: Date.now() + data.data.expires, 
+				access_token: data.access_token,
+				refresh_token: data.refresh_token,
+				expires_at: Date.now() + data.expires, 
 			};
 
 
@@ -56,13 +63,17 @@ export default defineNuxtPlugin(() => {
 
 	const isAuthenticated = async () => {
 		if (!import.meta.client) {
+			// authDataStore.userIsAuthenticated.value = false;
+			$authStore.userIsAuthenticated = false;
 			return false;
 		}
 		try {
-			const authData = await useCookie('directus-data').value;
+			const authData = useCookie('directus-data').value;
 			
-			if (!authData) {
-				return false;
+			if (!authData || !authData.access_token ) {
+				// authDataStore.userIsAuthenticated.value = false;
+			$authStore.userIsAuthenticated = false;
+			return false;
 			}
 			
 			const { expires_at } = authData;
@@ -73,13 +84,18 @@ export default defineNuxtPlugin(() => {
 				if(await refreshToken(authData.refresh_token)) {
 					return await isAuthenticated();
 				}else {
-					return false;
+			$authStore.userIsAuthenticated = false;
+			return false;
 				}
 			}
-	
-			const me = await directus.request(readMe());
+
+			
+			// authDataStore.userIsAuthenticated.value = true;
+			$authStore.userIsAuthenticated = true;
+			const {data: me} = await $fetch('/api/readMe');
 			return me;
 		} catch (error) {
+			// authDataStore.userIsAuthenticated.value = true;
 			console.error('Ошибка при проверке авторизации', error);
 			return false;
 		}
@@ -87,9 +103,9 @@ export default defineNuxtPlugin(() => {
 	
 
 
-	const logout = async () => {
-    await directus.logout();
-    navigateTo('/');
+	const logout = () => {
+			directus.logout();
+			$authStore.userIsAuthenticated = false;
 	};
 
 	return {
