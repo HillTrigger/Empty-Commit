@@ -19,9 +19,9 @@
 
 	// useModalScrollLock(props, modal);
 
-	onMounted(() => {
-		console.log(props.flag);
-	});
+	// onMounted(() => {
+	// 	console.log(props.flag);
+	// });
 
 </script>
 

@@ -1,9 +1,9 @@
 <script setup>
 // import { useSingUp } from './js/useSignUp';
 
-// definePageMeta({
-//   layout: 'empty'
-// });
+definePageMeta({
+  layout: 'empty'
+});
 
 </script>
 

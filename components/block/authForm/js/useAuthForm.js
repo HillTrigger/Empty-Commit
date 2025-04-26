@@ -1,11 +1,12 @@
-export function useAuthForm(modalStates) {
+export function useAuthForm(modalStates, isFullForm) {
 const {createUser} = useEmptyCommitData();
+const { $directus } = useNuxtApp();
 
 	const loading = ref(false);
 	const errorsText = ref([]);
 	
 	const signUp = async () => {
-		if (firstNameErrors.value.length > 0 || 
+			if (firstNameErrors.value.length > 0 || 
 				lastNameErrors.value.length > 0 || 
 				emailErrors.value.length > 0 || 
 				passwordErrors.value.length > 0) {
@@ -33,6 +34,35 @@ const {createUser} = useEmptyCommitData();
 		} finally {
 			loading.value = false;
 		}
+	};
+
+	const signIn = async () => {
+		console.log('войти');
+		
+		if (emailErrors.value.length > 0 || 
+			passwordErrors.value.length > 0) {
+		console.error('Исправьте ошибки перед отправкой');
+		return;
+	}
+	console.log('войти2');
+
+	loading.value = true;
+
+	try {
+
+		const response = await $directus.login(email.value, password.value);
+
+		console.log(response);
+		
+		return response;
+	} catch (error) {
+		console.log(error);
+		errorsText.value = error.errors.map(el => el.message);
+		modalStates.value.ModalError = true;
+		
+	} finally {
+		loading.value = false;
+	}
 	};
 
 	const firstName = ref('');
@@ -134,6 +164,6 @@ const {createUser} = useEmptyCommitData();
 	});
 
 	return {
-		firstName, firstNameErrors, lastName, lastNameErrors, email, emailErrors, password, passwordErrors, signUp, loading,  errorsText
+		firstName, firstNameErrors, lastName, lastNameErrors, email, emailErrors, password, passwordErrors, signUp, signIn, loading,  errorsText
 	};
 }

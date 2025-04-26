@@ -2,7 +2,7 @@
 <script setup lang="js">
 import { useAuthForm } from './js/useAuthForm';
 
-defineProps({
+const props = defineProps({
 	isFullForm: {
 		type: Boolean,
 		default: true
@@ -19,7 +19,7 @@ const modalStates = ref({
 const { closeModal } = useModalAction(modalStates);
 
 
-const {firstName, firstNameErrors, lastName, lastNameErrors, email, emailErrors, password, passwordErrors, signUp, loading, errorsText} = useAuthForm(modalStates);
+const {firstName, firstNameErrors, lastName, lastNameErrors, email, emailErrors, password, passwordErrors, signUp, signIn, loading, errorsText} = useAuthForm(modalStates, props.isFullForm);
 
 
 // const result = ref(false);
@@ -29,11 +29,18 @@ const {firstName, firstNameErrors, lastName, lastNameErrors, email, emailErrors,
 //     localStorage.setItem('directus_auth', JSON.stringify(response));
 //     result.value = true;
 // };
+const handleSubmit = () => {
+  if (props.isFullForm) {
+    signUp();
+  } else {
+    signIn();
+  }
+};
 </script>
 
 <template>
   <!-- <div v-if="result">Авторизован</div> -->
-  <form class="lg:max-w-96 mx-auto items-center bg-bgSecondary300 absolute top-0 bottom-0 left-0 right-0 flex p-4 flex-col justify-center lg:mt-16 lg:rounded-xl lg:relative"  @submit.prevent="signUp">
+  <form class="lg:max-w-96 mx-auto items-center  absolute top-0 bottom-0 left-0 right-0 flex p-4 flex-col justify-center lg:mt-16 lg:rounded-xl lg:relative"  @submit.prevent="handleSubmit">
     <h4 class="text-3xl mb-8">{{ title }}</h4>
     <div class="w-full flex flex-col gap-2 mb-4">
       <BaseInput

@@ -1,4 +1,8 @@
-<script lang="js"></script>
+<script setup lang="js">
+definePageMeta({
+  layout: 'empty'
+});
+</script>
 
 <template>
   <BlockAuthForm
