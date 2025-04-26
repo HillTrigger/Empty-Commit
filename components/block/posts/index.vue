@@ -5,6 +5,7 @@ const { getItems } = useEmptyCommitData();
 const { data: posts } = useAsyncData('posts', async () => {
   try {
     const result = await getItems();
+		
     return result || [];
   } catch (err) {
     console.error('Ошибка при получении данных:', err);

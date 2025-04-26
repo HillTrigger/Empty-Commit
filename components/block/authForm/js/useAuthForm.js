@@ -37,22 +37,20 @@ const { $directus } = useNuxtApp();
 	};
 
 	const signIn = async () => {
-		console.log('войти');
 		
 		if (emailErrors.value.length > 0 || 
 			passwordErrors.value.length > 0) {
 		console.error('Исправьте ошибки перед отправкой');
 		return;
 	}
-	console.log('войти2');
 
 	loading.value = true;
 
 	try {
 
 		const response = await $directus.login(email.value, password.value);
-
-		console.log(response);
+		// localStorage.setItem('directus_auth', JSON.stringify(response));
+		// console.log(response);
 		
 		return response;
 	} catch (error) {
