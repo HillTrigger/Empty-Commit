@@ -50,5 +50,27 @@ export function useEmptyCommitData() {
     }
   };
 
-  return { getItems, getUser, getItem, createUser };
+		const loginUser = async (email, password) => {
+			try {
+				const response = await $fetch('/api/loginUser', {
+					method: 'POST',
+					body: JSON.stringify({ email, password }),
+				});
+	
+				if (response?.success) {
+					return response.data;
+				}
+	
+				throw new Error('Ошибка при авторизации');
+			} catch (error) {
+				console.error('Ошибка при авторизации:', error);
+				throw createError({
+					statusCode: 401,
+					statusMessage: 'Unauthorized',
+					data: { message: 'Неверный логин или пароль' }
+				});
+			}
+		};
+
+  return { getItems, getUser, getItem, createUser, loginUser };
 }

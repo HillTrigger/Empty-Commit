@@ -1,5 +1,5 @@
 export function useAuthForm(modalStates, isFullForm) {
-const {createUser} = useEmptyCommitData();
+const {createUser, loginUser} = useEmptyCommitData();
 const { $directus } = useNuxtApp();
 
 	const loading = ref(false);
@@ -48,11 +48,32 @@ const { $directus } = useNuxtApp();
 
 	try {
 
-		const response = await $directus.login(email.value, password.value);
-		// localStorage.setItem('directus_auth', JSON.stringify(response));
-		// console.log(response);
+		// const response = await $directus.login(email.value, password.value);
+		const {data} = await loginUser(email.value, password.value);
+		const authData = {
+			access_token: data.access_token,
+			refresh_token: data.refresh_token,
+			expires_at: Date.now() + data.expires, // expires уже в миллисекундах?
+		};
+
+		useCookie('directus_refresh_token', 
+			{
+			maxAge: data.expires / 1000, // Важно: здесь в СЕКУНДАХ
+			path: '/',
+			secure: process.env.NODE_ENV === 'production',
+			sameSite: 'Lax',
+			}
+		).value = authData.refresh_token; 
+
+		useCookie('directus-data', {
+			maxAge: data.expires / 1000, // Важно: здесь в СЕКУНДАХ
+			path: '/',
+			secure: process.env.NODE_ENV === 'production',
+			sameSite: 'Lax',
+		}).value = authData; 
 		
-		return response;
+		
+		return authData;
 	} catch (error) {
 		console.log(error);
 		errorsText.value = error.errors.map(el => el.message);

@@ -5,7 +5,6 @@ import {
 	readItems,
 	registerUser,
 	authentication,
-	refresh,
 } from '@directus/sdk';
 
 export default defineNuxtPlugin(() => {
@@ -28,10 +27,31 @@ export default defineNuxtPlugin(() => {
 	.with(rest({ credentials: 'include' }));
 
 	
-	const refreshToken = async () => {
-		return directus.request(
-				refresh('cookie')
-		);
+	const refreshToken = async (refresh_token) => {
+		try {
+			const { data } = await $fetch('/api/refreshToken', {
+				method: 'POST',
+				body: {
+					refresh_token: refresh_token,
+				},
+			});
+			console.log(data.data);
+			
+
+			const directusData = useCookie('directus-data');
+			directusData.value = {
+				access_token: data.data.access_token,
+				refresh_token: data.data.refresh_token,
+				expires_at: Date.now() + data.data.expires, 
+			};
+
+
+			console.log('Токен успешно обновлён: ', directusData);
+			return true;
+		} catch (error) {
+			console.error('Ошибка при обновлении токена', error);
+			return false;
+		}
 	};
 
 	const isAuthenticated = async () => {
@@ -50,8 +70,11 @@ export default defineNuxtPlugin(() => {
 	
 			if (Date.now() >= expires_at) {
 				console.warn('Токен истёк, обновляем...');
-				await refreshToken();
-				return await isAuthenticated();
+				if(await refreshToken(authData.refresh_token)) {
+					return await isAuthenticated();
+				}else {
+					return false;
+				}
 			}
 	
 			const me = await directus.request(readMe());
