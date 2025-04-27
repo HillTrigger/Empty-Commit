@@ -1,7 +1,10 @@
 <script setup lang="js">
 definePageMeta({
   layout: 'empty',
+	middleware: ['ban-if-auth'], // Только для этой страницы
+	suspense: true,
 });
+
 </script>
 
 <template>

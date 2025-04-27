@@ -23,7 +23,7 @@ export default defineNuxtPlugin(() => {
 	const storage = new NuxtCookieStorage();
 
 	const directus = createDirectus(
-			'https://directus.api.hilltrigger.ru',
+			process.env.DIRECTUS_URL,
 	)
 	.with(authentication('json', { credentials: 'include', storage }))
 	.with(rest({ credentials: 'include' }));
@@ -63,7 +63,7 @@ export default defineNuxtPlugin(() => {
 	const isAuthenticated = async () => {
 		if (!import.meta.client) {
 			// authDataStore.userIsAuthenticated.value = false;
-			$authStore.userIsAuthenticated = false;
+			// $authStore.userIsAuthenticated = false;
 			return false;
 		}
 		try {

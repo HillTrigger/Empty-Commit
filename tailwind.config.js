@@ -24,6 +24,7 @@ export default {
             '--tw-prose-headings': theme('colors.textColor'),
             '--tw-prose-quotes': theme('colors.textQuote'),
             '--tw-prose-links': theme('colors.textAccent'),
+            '--tw-prose-code': theme('colors.textQuote'),
           },
         },
       }),
