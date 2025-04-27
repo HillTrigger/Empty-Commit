@@ -2,7 +2,7 @@
 // import { useSingUp } from './js/useSignUp';
 
 definePageMeta({
-  layout: 'empty'
+  layout: 'empty',
 });
 
 </script>

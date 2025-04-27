@@ -1,6 +1,5 @@
 import {
 	createDirectus,
-	readMe,
 	rest,
 	readItems,
 	registerUser,

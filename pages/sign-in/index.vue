@@ -1,6 +1,6 @@
 <script setup lang="js">
 definePageMeta({
-  layout: 'empty'
+  layout: 'empty',
 });
 </script>
 

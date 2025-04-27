@@ -55,17 +55,17 @@ const {createUser, loginUser} = useEmptyCommitData();
 			expires_at: Date.now() + data.expires, // expires уже в миллисекундах?
 		};
 
-		useCookie('directus_refresh_token', 
-			{
-			maxAge: data.expires / 1000, // Важно: здесь в СЕКУНДАХ
-			path: '/',
-			secure: process.env.NODE_ENV === 'production',
-			sameSite: 'Lax',
-			}
-		).value = authData.refresh_token; 
+		// useCookie('directus_refresh_token', 
+		// 	{
+		// 	maxAge: Date.now() + 7 * 24 * 60 * 60, // Важно: здесь в СЕКУНДАХ
+		// 	path: '/',
+		// 	secure: process.env.NODE_ENV === 'production',
+		// 	sameSite: 'Lax',
+		// 	}
+		// ).value = authData.refresh_token; 
 
 		useCookie('directus-data', {
-			maxAge: data.expires / 1000, // Важно: здесь в СЕКУНДАХ
+			maxAge: Date.now() + 7 * 24 * 60 * 60, // Важно: здесь в СЕКУНДАХ
 			path: '/',
 			secure: process.env.NODE_ENV === 'production',
 			sameSite: 'Lax',

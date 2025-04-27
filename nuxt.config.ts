@@ -66,4 +66,5 @@ export default defineNuxtConfig({
       exclude: ['jsdom']
     }
   },
+
 });
