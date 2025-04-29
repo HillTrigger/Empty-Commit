@@ -45,7 +45,7 @@
             </li>
             <li v-if="$authStore.userIsAuthenticated" class="">
               <nuxt-link class="px-2 py-1 flex items-center gap-1 hover:bg-bgSecondary300 rounded-md" prefetch to="/iam">
-                <SvgInfo class="text-textColor h-4 w-4"/>
+                <SvgPeople class="text-textColor h-4 w-4"/>
                 Личный кабинет</nuxt-link>
             </li>
           </ul>

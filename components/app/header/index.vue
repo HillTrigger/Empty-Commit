@@ -22,7 +22,9 @@
 
 <template>
   <header class="relative z-10 border-b border-borderColor p-4 flex justify-between">
-    <AppLogo :page-title="pageTitle"/>
+    <nuxt-link to="/">
+      <AppLogo :page-title="pageTitle"/>
+    </nuxt-link>
     <div class="flex align-center gap-2">
       <client-only>
         <BaseButton v-if="!$authStore.userIsAuthenticated"  :is-link="true" to="/sign-in">

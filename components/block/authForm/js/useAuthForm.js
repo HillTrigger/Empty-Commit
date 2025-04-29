@@ -27,8 +27,16 @@ const {createUser, loginUser} = useEmptyCommitData();
 			return response;
 		} catch (error) {
 			console.log(error.data);
-			errorsText.value = error.data.errors.map(el => el.message);
+			if(error.errors) {
+				errorsText.value = error.data.errors.map(el => el.message);
+			}else{
+				errorsText.value = [...errorsText.value, error.message];
+			}
 			modalStates.value.ModalError = true;
+			throw createError({
+				statusCode: 401,
+				message: error.message,
+			});
 			
 		} finally {
 			loading.value = false;
@@ -39,8 +47,8 @@ const {createUser, loginUser} = useEmptyCommitData();
 		
 		if (emailErrors.value.length > 0 || 
 			passwordErrors.value.length > 0) {
-		console.error('Исправьте ошибки перед отправкой');
-		return;
+			console.error('Исправьте ошибки перед отправкой');
+			return;
 	}
 
 	loading.value = true;
@@ -75,8 +83,16 @@ const {createUser, loginUser} = useEmptyCommitData();
 		return authData;
 	} catch (error) {
 		console.log(error);
-		errorsText.value = error.errors.map(el => el.message);
+		if(error.errors) {
+			errorsText.value = error.errors.map(el => el.message);
+		}else{
+			errorsText.value = [...errorsText.value, error.message];
+		}
 		modalStates.value.ModalError = true;
+		throw createError({
+			statusCode: 401,
+			message: error.message,
+		});
 		
 	} finally {
 		loading.value = false;

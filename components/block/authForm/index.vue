@@ -28,7 +28,7 @@ const {firstName, firstNameErrors, lastName, lastNameErrors, email, emailErrors,
   <!-- <div v-if="result">Авторизован</div> -->
   <form
     class="lg:max-w-96 mx-auto items-center absolute top-0 bottom-0 left-0 right-0 flex p-4 flex-col justify-center lg:mt-16 lg:rounded-xl lg:relative"
-    @submit.prevent="() => handleSubmitAuth(isFullForm, signUp, signIn)"
+    @submit.prevent="() => handleSubmitAuth(isFullForm, signUp, signIn, modalStates)"
   >
     <h4 class="text-3xl mb-8">{{ title }}</h4>
     <div class="w-full flex flex-col gap-2 mb-4">

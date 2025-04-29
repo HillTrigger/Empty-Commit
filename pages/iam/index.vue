@@ -6,7 +6,5 @@ definePageMeta({
 </script>
 
 <template>
-  <div>
-    Тестовая страница
-  </div>
+  <BlockUserInfo/>
 </template>

@@ -66,8 +66,7 @@ export function useEmptyCommitData() {
 				console.error('Ошибка при авторизации:', error);
 				throw createError({
 					statusCode: 401,
-					statusMessage: 'Unauthorized',
-					data: { message: 'Неверный логин или пароль' }
+					message: 'Неверный логин или пароль',
 				});
 			}
 		};

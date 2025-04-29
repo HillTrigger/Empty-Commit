@@ -1,16 +1,15 @@
 export const handleSubmitAuth = async (isFullForm, signUp, signIn) => {
+
   try {
     if (isFullForm) {
       await signUp();
-    } else {
-      await signIn();
-    }
-    if (isFullForm) {
       navigateTo('/sign-in');
     } else {
+      await signIn();
       navigateTo('/');
     }
+
   } catch (error) {
-    console.error('Auth error:', error);
+		console.log('Full error:', error);
   }
 };
