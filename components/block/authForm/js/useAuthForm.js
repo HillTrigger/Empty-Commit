@@ -1,4 +1,4 @@
-export function useAuthForm(modalStates, isFullForm) {
+export function useAuthForm(modalStates) {
 const {createUser, loginUser} = useEmptyCommitData();
 
 	const loading = ref(false);
@@ -181,7 +181,23 @@ const {createUser, loginUser} = useEmptyCommitData();
 		return errors;
 	});
 
+	const repeatPassword = ref('');
+	const repeatPasswordErrors = computed(() => {
+		const errors = [];
+		
+		if (!repeatPassword.value) {
+			errors.push('Повтор обязателен');
+			return errors;
+		}
+	
+		if (repeatPassword.value !== password.value) {
+			errors.push('Пароли не совпадают');
+		}
+	
+		return errors;
+	});
+
 	return {
-		firstName, firstNameErrors, lastName, lastNameErrors, email, emailErrors, password, passwordErrors, signUp, signIn, loading,  errorsText
+		firstName, firstNameErrors, lastName, lastNameErrors, email, emailErrors, password, passwordErrors, signUp, signIn, loading,  errorsText, repeatPassword, repeatPasswordErrors
 	};
 }
