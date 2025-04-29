@@ -13,9 +13,6 @@ export default defineNuxtConfig({
       }
     }
   },
-	// routeRules: {
-	// 	'/directus/**': { proxy: process.env.DIRECTUS_URL },
-	// },
     app: {
     head: {
       charset: 'utf-8',
@@ -31,10 +28,7 @@ export default defineNuxtConfig({
     runtimeConfig: {
     apiKey: process.env.NUXT_API_KEY,
     public: {
-      apiUrl: process.env.DIRECTUS_URL,
-			directus: {
-        url: process.env.DIRECTUS_URL
-      }
+			directusUrl: process.env.DIRECTUS_URL || 'https://directus.api.hilltrigger.ru', 
     },
   },
   devtools: { enabled: true },

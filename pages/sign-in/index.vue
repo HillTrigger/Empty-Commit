@@ -9,6 +9,6 @@ definePageMeta({
 
 <template>
   <BlockAuthForm
-    title="Sign up to Empty Commit"
+    title="Sign in to Empty Commit"
     :is-full-form="false"/>
 </template>

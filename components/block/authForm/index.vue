@@ -32,16 +32,14 @@ const {firstName, firstNameErrors, lastName, lastNameErrors, email, emailErrors,
 const handleSubmit = async () => {
   try {
     if (props.isFullForm) {
-      await signUp(); // Добавьте await
+      await signUp();
     } else {
-      await signIn(); // Добавьте await
+      await signIn();
     }
-
-    const isAuth = await $isAuthenticated();
-    if (!isAuth) {
-      throw new Error('Authentication failed');
-    }
-
+    // const isAuth = await $isAuthenticated();
+    // if (!isAuth) {
+    //   throw new Error('Authentication failed');
+    // }
     if (props.isFullForm) {
       navigateTo('/sign-in');
     } else {

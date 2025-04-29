@@ -23,7 +23,7 @@ export default defineNuxtPlugin(() => {
 	const storage = new NuxtCookieStorage();
 
 	const directus = createDirectus(
-			process.env.DIRECTUS_URL,
+			'https://directus.api.hilltrigger.ru',
 	)
 	.with(authentication('json', { credentials: 'include', storage }))
 	.with(rest({ credentials: 'include' }));
