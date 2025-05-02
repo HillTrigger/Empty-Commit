@@ -49,7 +49,7 @@ const { data: user } = useAsyncData(`user-${props.keyAuthor}`, async () => {
         <img :src="`https://directus.api.hilltrigger.ru/assets/${user.avatar}?width=256&height=256&fit=cover`" alt="ava">
       </div>
       <div class="flex flex-col">
-        <span class="text-sm">{{ user.first_name + ' ' + user.last_name }}</span>
+        <span class="text-sm">{{ user.first_name }}</span>
         <span class="text-xs text-textSecondary">{{ date }}</span>
       </div>
       <NuxtLink :to="{ name: 'post-id', params: { id } }" class="hover:underline pl-2 relative before:content-[''] before:rounded-full before:absolute before:left-0 before:top-1/2 before:-translate-x-1/2 before:-translate-y-1/2 before:bg-textColor before:w-1 before:h-1 text-lg md:text-xl text-center">

@@ -1,23 +1,5 @@
 export default defineEventHandler(async (event) => {
   const body = await readBody(event);
-  // console.log('Received data:', body);
-
-  // Проверка обязательных полей
-  // if (!body.email || !body.password || !body.firstName || !body.lastName) {
-  //   throw createError({
-  //     statusCode: 400,
-  //     statusMessage: 'Missing required fields',
-  //     data: {
-  //       fields: {
-  //         email: !body.email,
-  //         password: !body.password,
-  //         firstName: !body.firstName,
-  //         lastName: !body.lastName
-  //       },
-  //       message: 'Заполните все обязательные поля'
-  //     }
-  //   });
-  // }
 
   try {
     const response = await $fetch('https://directus.api.hilltrigger.ru/users/register', {
@@ -29,7 +11,7 @@ export default defineEventHandler(async (event) => {
         email: body.email,
         password: body.password,
         first_name: body.firstName,
-        last_name: body.lastName
+        last_name: '--'
       })
     });
 

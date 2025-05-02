@@ -3,32 +3,44 @@ import { handleSubmitAuth } from './js/handleSubmitAuth';
 import { useAuthForm } from './js/useAuthForm';
 
 const props = defineProps({
-	isFullForm: {
-		type: Boolean,
-		default: true
-	},
-	title: {
-		type: String,
-		default: ''
-	}
+  isFullForm: {
+    type: Boolean,
+    default: true,
+  },
+  title: {
+    type: String,
+    default: '',
+  },
 });
 
 const modalStates = ref({
-    ModalError: false,
-  });
+  ModalError: false,
+});
 const { closeModal } = useModalAction(modalStates);
 
-
-const {firstName, firstNameErrors, lastName, lastNameErrors, email, emailErrors, password, passwordErrors, repeatPassword, repeatPasswordErrors, signUp, signIn, loading, errorsText} = useAuthForm(modalStates, props.isFullForm);
-
-
+const {
+  firstName,
+  firstNameErrors,
+  email,
+  emailErrors,
+  password,
+  passwordErrors,
+  repeatPassword,
+  repeatPasswordErrors,
+  signUp,
+  signIn,
+  loading,
+  errorsText,
+} = useAuthForm(modalStates, props.isFullForm);
 </script>
 
 <template>
   <!-- <div v-if="result">Авторизован</div> -->
   <form
-    class="lg:max-w-96 mx-auto items-center absolute top-0 bottom-0 left-0 right-0 flex p-4 flex-col justify-center lg:mt-16 lg:rounded-xl lg:relative"
-    @submit.prevent="() => handleSubmitAuth(isFullForm, signUp, signIn, modalStates)"
+    class="items-center lg:max-w-96 mx-auto absolute top-0 bottom-0 left-0 right-0 flex p-4 flex-col justify-center lg:mt-16 lg:rounded-xl lg:relative"
+    @submit.prevent="
+      () => handleSubmitAuth(isFullForm, signUp, signIn, modalStates)
+    "
   >
     <h4 class="text-3xl mb-8">{{ title }}</h4>
     <div class="w-full flex flex-col gap-2 mb-4">
@@ -39,15 +51,6 @@ const {firstName, firstNameErrors, lastName, lastNameErrors, email, emailErrors,
         label="Ваше Имя"
         :errors="firstNameErrors"
         :success="firstNameErrors.length === 0"
-        :disabled="loading"
-      />
-      <BaseInput
-        v-if="isFullForm"
-        v-model="lastName"
-        placeholder="Введите фамилию"
-        label="Ваша фамилия"
-        :errors="lastNameErrors"
-        :success="lastNameErrors.length === 0"
         :disabled="loading"
       />
       <BaseInput

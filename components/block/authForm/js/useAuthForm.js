@@ -6,7 +6,6 @@ const {createUser, loginUser} = useEmptyCommitData();
 	
 	const signUp = async () => {
 			if (firstNameErrors.value.length > 0 || 
-				lastNameErrors.value.length > 0 || 
 				emailErrors.value.length > 0 || 
 				passwordErrors.value.length > 0) {
 			console.error('Исправьте ошибки перед отправкой');
@@ -18,7 +17,6 @@ const {createUser, loginUser} = useEmptyCommitData();
 		try {
 			const response = await createUser({
 				firstName: firstName.value,
-				lastName: lastName.value,
 				email: email.value,
 				password: password.value
 			});
@@ -26,8 +24,8 @@ const {createUser, loginUser} = useEmptyCommitData();
 			
 			return response;
 		} catch (error) {
-			console.log(error.data);
-			if(error.errors) {
+				errorsText.value = [];
+			if(error.data.errors) {
 				errorsText.value = error.data.errors.map(el => el.message);
 			}else{
 				errorsText.value = [...errorsText.value, error.message];
@@ -55,25 +53,15 @@ const {createUser, loginUser} = useEmptyCommitData();
 
 	try {
 
-		// const response = await $directus.login(email.value, password.value);
 		const {data} = await loginUser(email.value, password.value);
 		const authData = {
 			access_token: data.access_token,
 			refresh_token: data.refresh_token,
-			expires_at: Date.now() + data.expires, // expires уже в миллисекундах?
+			expires_at: Date.now() + data.expires,
 		};
 
-		// useCookie('directus_refresh_token', 
-		// 	{
-		// 	maxAge: Date.now() + 7 * 24 * 60 * 60, // Важно: здесь в СЕКУНДАХ
-		// 	path: '/',
-		// 	secure: process.env.NODE_ENV === 'production',
-		// 	sameSite: 'Lax',
-		// 	}
-		// ).value = authData.refresh_token; 
-
 		useCookie('directus-data', {
-			maxAge: Date.now() + 7 * 24 * 60 * 60, // Важно: здесь в СЕКУНДАХ
+			maxAge: Date.now() + 7 * 24 * 60 * 60,
 			path: '/',
 			secure: process.env.NODE_ENV === 'production',
 			sameSite: 'Lax',
@@ -82,7 +70,7 @@ const {createUser, loginUser} = useEmptyCommitData();
 		
 		return authData;
 	} catch (error) {
-		console.log(error);
+		errorsText.value = [];
 		if(error.errors) {
 			errorsText.value = error.errors.map(el => el.message);
 		}else{
@@ -107,22 +95,12 @@ const {createUser, loginUser} = useEmptyCommitData();
 			return errors;
 		}
 		if (firstName.value.length < 3) {errors.push('Не меньше 3 символов');}
-		if (!/^[a-zA-Zа-яА-Я]+$/.test(firstName.value)) {errors.push('Только буквы');}
-		return errors;
-	});
-	
-	const lastName = ref('');
-	const lastNameErrors = computed(() => {
-		const errors = [];
-		if (!lastName.value) {
-			errors.push('Фамилия обязательна');
-			return errors;
+		if (/[!@#$%^&*()_+=[\]{};':"\\|,.<>/?]/.test(firstName.value)) {
+			errors.push('Запрещены специальные символы');
 		}
-		if (lastName.value.length < 3) {errors.push('Не меньше 3 символов');}
-		if (!/^[a-zA-Zа-яА-Я]+$/.test(lastName.value)) {errors.push('Только буквы');}
 		return errors;
 	});
-	
+
 	const email = ref('');
 	const emailErrors = computed(() => {
 		const errors = [];
@@ -214,6 +192,6 @@ const {createUser, loginUser} = useEmptyCommitData();
 	});
 
 	return {
-		firstName, firstNameErrors, lastName, lastNameErrors, email, emailErrors, password, passwordErrors, signUp, signIn, loading,  errorsText, repeatPassword, repeatPasswordErrors
+		firstName, firstNameErrors, email, emailErrors, password, passwordErrors, signUp, signIn, loading,  errorsText, repeatPassword, repeatPasswordErrors
 	};
 }
