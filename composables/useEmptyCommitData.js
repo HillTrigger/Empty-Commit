@@ -1,4 +1,7 @@
 export function useEmptyCommitData() {
+	// const { $authStore } = useNuxtApp();
+
+
   const getItems = async () => {
     try {
       const data = await $fetch('/api/getItems');
@@ -50,26 +53,32 @@ export function useEmptyCommitData() {
     }
   };
 
-		const loginUser = async (email, password) => {
-			try {
-				const response = await $fetch('/api/loginUser', {
-					method: 'POST',
-					body: JSON.stringify({ email, password }),
-				});
-	
-				if (response?.success) {
-					return response.data;
-				}
-	
-				throw new Error('Ошибка при авторизации');
-			} catch (error) {
-				console.error('Ошибка при авторизации:', error);
-				throw createError({
-					statusCode: 401,
-					message: 'Неверный логин или пароль',
-				});
+	const loginUser = async (email, password) => {
+		try {
+			const response = await $fetch('/api/loginUser', {
+				method: 'POST',
+				body: JSON.stringify({ email, password }),
+			});
+
+			if (response?.success) {
+				return response.data;
 			}
-		};
+
+			throw new Error('Ошибка при авторизации');
+		} catch (error) {
+			console.error('Ошибка при авторизации:', error);
+			throw createError({
+				statusCode: 401,
+				message: 'Неверный логин или пароль',
+			});
+		}
+	};
+
+	// const getUserId = async () => {
+	// 	if($authStore.userId) {return;}
+	// 	const data = await $fetch('/api/readMe');
+	// 	return data;
+	// };
 
   return { getItems, getUser, getItem, createUser, loginUser };
 }
