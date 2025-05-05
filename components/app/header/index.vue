@@ -1,31 +1,30 @@
 <script setup>
+import { useHeader } from './js/useHeader';
+import HeaderControls from './ui/HeaderControlsLayout';
+import HeaderLayout from './ui/HeaderLayout';
+
+	const { $authStore, $logout } = useNuxtApp();
+
 	defineProps({
 		pageTitle: {
 			type: String,
 			default: ''
 		}
 	});
-  const modalStates = ref({
-    ModalNavigation: false,
-  });
-	const {openModal, closeModal} = useModalAction(modalStates);
-	const colorMode = useColorMode();
 
-	const toggleColorMode = () => {
-  	colorMode.preference = colorMode.value === 'dark' ? 'light' : 'dark';
-	};
+	const {
+		toggleColorMode, openModal, closeModal, modalStates, colorMode
+	} = useHeader();
 
-	const { $authStore, $logout } = useNuxtApp();
-	
 
 </script>
 
 <template>
-  <header class="relative z-10 border-b border-borderColor p-4 flex justify-between">
+  <HeaderLayout>
     <nuxt-link to="/">
       <AppLogo :page-title="pageTitle"/>
     </nuxt-link>
-    <div class="flex align-center gap-2">
+    <HeaderControls>
       <client-only>
         <BaseButton v-if="!$authStore.userIsAuthenticated"  :is-link="true" to="/sign-in">
           Войти
@@ -41,8 +40,8 @@
         </BaseButton>
       </client-only>
       <AppBurger @click="openModal('ModalNavigation')"/>
-    </div>
-  </header>
+    </HeaderControls>
+  </HeaderLayout>
   <teleport to='body'>
     <ModalNavigation v-model:flag="modalStates.ModalNavigation" :page-title="pageTitle" @close-modal="(e) => closeModal('ModalNavigation', e)"/>
   </teleport>

@@ -8,7 +8,6 @@ definePageMeta({
 });
 
 const {getUser} = useEmptyCommitData();
-
 onMounted(async () => {
 	const data = await getUser($authStore.userId);
 	console.log(data);

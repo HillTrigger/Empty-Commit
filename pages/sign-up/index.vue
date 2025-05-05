@@ -1,12 +1,9 @@
 <script setup>
-// import { useSingUp } from './js/useSignUp';
-
 definePageMeta({
   layout: 'empty',
 	middleware: ['ban-if-auth'], // Только для этой страницы
 	suspense: true,
 });
-
 </script>
 
 <template>

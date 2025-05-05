@@ -1,6 +1,8 @@
 <script setup lang="js">
 import { handleSubmitAuth } from './js/handleSubmitAuth';
 import { useAuthForm } from './js/useAuthForm';
+import FormLayout from './ui/FormLayout';
+import InputsLayout from './ui/InputsLayout';
 
 const props = defineProps({
   isFullForm: {
@@ -35,15 +37,12 @@ const {
 </script>
 
 <template>
-  <!-- <div v-if="result">Авторизован</div> -->
-  <form
-    class="items-center lg:max-w-96 mx-auto absolute top-0 bottom-0 left-0 right-0 flex p-4 flex-col justify-center lg:mt-16 lg:rounded-xl lg:relative"
+  <FormLayout
     @submit.prevent="
       () => handleSubmitAuth(isFullForm, signUp, signIn, modalStates)
-    "
-  >
+    ">
     <h4 class="text-3xl mb-8">{{ title }}</h4>
-    <div class="w-full flex flex-col gap-2 mb-4">
+    <InputsLayout>
       <BaseInput
         v-if="isFullForm"
         v-model="firstName"
@@ -80,7 +79,7 @@ const {
         :success="repeatPasswordErrors.length === 0"
         :disabled="loading"
       />
-    </div>
+    </InputsLayout>
     <BaseButton type="submit" class="w-full h-12">
       {{ isFullForm ? 'Зарегистрироваться' : 'Войти' }}
     </BaseButton>
@@ -109,5 +108,5 @@ const {
         @close-modal="(e) => closeModal('ModalError', e)"
       />
     </teleport>
-  </form>
+  </FormLayout>
 </template>

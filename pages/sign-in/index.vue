@@ -4,7 +4,6 @@ definePageMeta({
 	middleware: ['ban-if-auth'], // Только для этой страницы
 	suspense: true,
 });
-
 </script>
 
 <template>

@@ -1,17 +1,7 @@
 <script lang="js" setup>
-const { getItem } = useEmptyCommitData();
-const id = +useRoute().params.id;
-const {data: post} = useAsyncData('posts', async () => {
-  try {
-    const result = await getItem(id);
-    return result;
-  } catch (err) {
-    console.error('Ошибка при получении данных:', err);
-    return null;
-  }
-},{
-    server: true
-  });
+import { usePost } from './js/usePost';
+
+	const { post } = usePost();
 
 	useMetaTags({description: post.description, image: false, url: `https://blog.hilltrigger.ru/post/${post.id}`});
 </script>
