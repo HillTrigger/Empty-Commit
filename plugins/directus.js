@@ -75,7 +75,7 @@ export default defineNuxtPlugin(() => {
 			if (Date.now() >= expires_at) {
 				console.warn('Токен истёк, обновляем...');
 				const data = await refreshToken(authData.refresh_token);
-				console.log(data);
+				// console.log(data);
 				if(data) {
 					return await isAuthenticated();
 				}else {

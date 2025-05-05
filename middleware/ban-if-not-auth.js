@@ -1,15 +1,20 @@
 //middleware/ban-if-not-auth.js
 // eslint-disable-next-line no-unused-vars
-export default defineNuxtRouteMiddleware((to, from) => {
-	// const { $authStore } = useNuxtApp();
+export default defineNuxtRouteMiddleware(async (to, from) => {
+  const { $isAuthenticated, $authStore } = useNuxtApp();
+	if (to.path === '/') {return;}
+  try {
+    const user = await $isAuthenticated();
 
-  // try {
-	// 	if(!$authStore.userIsAuthenticated) {
-	// 		return navigateTo('/');
-	// 	}
-			
-
-  // } catch {
-  //   return null;
-	// };
+		// if (user === false) {
+		// 	return null;
+		// }
+    if (user === false) {
+      return '/';
+    }
+		$authStore.userId = user.id;
+  } catch (error) {
+    console.log('Ошибка при проверке аутентификации:', error);
+    return '/';
+	};
 });
