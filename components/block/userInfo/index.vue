@@ -17,12 +17,11 @@ const { data: user } = useAsyncData(`user-${$authStore.userId}`, async () => {
 });
 onMounted(() => {
 	console.log(user.value);
-	
 });
 </script>
 
 <template>
-  <div class="p-4">
+  <div v-if="user" class="p-4">
     <div class="flex flex-col items-center gap-4">
       <div class="rounded-full min-w-64 min-h-64 w-64 h-64 overflow-hidden border-2 border-borderColor ">
         <img class="object-cover w-full h-full" :src="`https://directus.api.hilltrigger.ru/assets/${user.avatar}?width=512&height=512&fit=cover`" alt="ava">
