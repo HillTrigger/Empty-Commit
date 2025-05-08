@@ -1,5 +1,5 @@
 <script setup>
-const { $authStore } = useNuxtApp();
+// const { $authStore } = useNuxtApp();
 
 
 definePageMeta({
@@ -7,11 +7,11 @@ definePageMeta({
 	suspense: true,
 });
 
-const {getUser} = useEmptyCommitData();
-onMounted(async () => {
-	const data = await getUser($authStore.userId);
-	console.log(data);
-});
+// const {getUser} = useEmptyCommitData();
+// onMounted(async () => {
+// 	const data = await getUser($authStore.userId);
+// 	console.log(data);
+// });
 </script>
 
 <template>

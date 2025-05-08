@@ -9,6 +9,7 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
     if (user !== false) {
       return '/';
     }
+		
   } catch (error) {
     console.log('Ошибка при проверке аутентификации:', error);
     return '/';

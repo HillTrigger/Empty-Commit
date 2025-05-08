@@ -12,7 +12,9 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
     if (user === false) {
       return '/';
     }
-		$authStore.userId = user.id;
+		console.log(user);
+		
+		$authStore.userId = user;
   } catch (error) {
     console.log('Ошибка при проверке аутентификации:', error);
     return '/';

@@ -86,7 +86,7 @@ export default defineNuxtPlugin(() => {
 
 			$authStore.userIsAuthenticated = true;
 			const {data: me} = await $fetch(`/api/readMe?access_token=${authData.access_token}`);
-			return me;
+			return me.id;
 		} catch (error) {
 			console.error('Ошибка при проверке авторизации', error);
 			return false;
