@@ -5,7 +5,7 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
 	if (to.path === '/') {return;}
   try {
 
-    if ($authStore !== null) {
+    if ($authStore.userId !== null) {
       return '/';
     }
 		
