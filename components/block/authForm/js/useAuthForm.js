@@ -25,18 +25,16 @@ export function useAuthForm(modalStates) {
         email: email.value,
         password: password.value,
       });
-      console.log(response);
-      return response;
+      return true;
     } catch (error) {
       errorsText.value = [];
       if (error.data) {
         errorsText.value = error.data.errors.map((el) => el.message);
       } else {
-        console.log('JIFDSFFDF');
-
         errorsText.value = [...errorsText.value, error.message];
       }
       modalStates.value.ModalError = true;
+			return false;
     } finally {
       loading.value = false;
     }
@@ -67,7 +65,7 @@ export function useAuthForm(modalStates) {
         sameSite: 'Lax',
       }).value = authData;
 
-      return authData;
+      return true;
     } catch (error) {
       errorsText.value = [];
       if (error.data) {
@@ -78,6 +76,7 @@ export function useAuthForm(modalStates) {
         errorsText.value = [...errorsText.value, error.message];
       }
       modalStates.value.ModalError = true;
+			return false;
     } finally {
       loading.value = false;
     }

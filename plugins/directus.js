@@ -95,7 +95,9 @@ export default defineNuxtPlugin(() => {
 
 	const logout = () => {
 			directus.logout();
+			document.cookie = 'directus-data=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
 			$authStore.userIsAuthenticated = false;
+			$authStore.userId = null;
 	};
 
 	return {
