@@ -10,6 +10,10 @@ export function getTitle(path) {
 		};
 		case path === '/iam':
 			return 'Личный кабинет';
+		case path === '/sign-in':
+			return 'Войти';
+		case path === '/sign-up':
+			return 'Зарегистрироваться';
 		default:
 			return 'Страница не найдена';
 	}
