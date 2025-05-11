@@ -74,11 +74,29 @@ export function useEmptyCommitData() {
 		}
 	};
 
+	const verifyEmail = async (token) => {
+		try {
+			const {success} = await $fetch('/api/verifyEmail', {
+				method: 'POST',
+				body: { token } // <== без JSON.stringify
+			});
+
+
+			return {success};
+		} catch (error) {
+			console.error('Ошибка при подтверждении почты:', error);
+			throw createError({
+				statusCode: 500,
+				message: 'Ошибка подтверждения почты, попробуйте ещё раз позже',
+			});
+		}
+	};
+
 	// const getUserId = async () => {
 	// 	if($authStore.userId) {return;}
 	// 	const data = await $fetch('/api/readMe');
 	// 	return data;
 	// };
 
-  return { getItems, getUser, getItem, createUser, loginUser };
+  return { getItems, getUser, getItem, createUser, loginUser, verifyEmail };
 }
