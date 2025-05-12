@@ -4,6 +4,9 @@
  const token = computed(() => route.query.token);
 const { verifyEmail } = useEmptyCommitData();
 
+definePageMeta({
+  layout: 'empty',
+});
 
 const {data} = useAsyncData('posts', async () => {
   try {
@@ -19,6 +22,7 @@ const {data} = useAsyncData('posts', async () => {
 },{
     server: true
 });
+    // <p>{{ data }}</p>
 </script>
 
 <template>

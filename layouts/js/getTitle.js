@@ -14,6 +14,11 @@ export function getTitle(path) {
 			return 'Войти';
 		case path === '/sign-up':
 			return 'Зарегистрироваться';
+		case path === '/email-sent':
+			return 'Ссылка отправлена';
+		case path.startsWith('/users/register/verify-email'): {
+			return 'Подтверждение почты';
+		};
 		default:
 			return 'Страница не найдена';
 	}
