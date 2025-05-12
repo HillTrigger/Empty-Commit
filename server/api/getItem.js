@@ -19,7 +19,7 @@ export default defineEventHandler(async (event) => {
     });
   }
   try {
-    const response = await $fetch(`https://directus.api.hilltrigger.ru/items/posts/${query.postId}`, {
+    const response = await $fetch(`${process.env.DIRECTUS_URL}/items/posts/${query.postId}`, {
       // headers: {
       //   Authorization: `Bearer ${config.apiKey}`,
       // },

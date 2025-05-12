@@ -18,7 +18,7 @@ export default defineEventHandler(async (event) => {
 
   try {
     // Запрос к Directus API для получения данных текущего пользователя
-    const userData = await $fetch('https://directus.api.hilltrigger.ru/users/me', {
+    const userData = await $fetch(`${process.env.DIRECTUS_URL}/users/me`, {
       headers: {
         Authorization: `Bearer ${access_token}`
       }

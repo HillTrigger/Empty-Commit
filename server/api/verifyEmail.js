@@ -15,7 +15,7 @@ export default defineEventHandler(async (event) => {
   }
 
   try {
-    const response = await $fetch('https://directus.api.hilltrigger.ru/users/register/verify-email', {
+    const response = await $fetch(`${process.env.DIRECTUS_URL}/users/register/verify-email`, {
       method: 'GET',
       query: {
         token: body.token

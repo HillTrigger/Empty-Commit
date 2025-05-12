@@ -16,7 +16,7 @@ export default defineEventHandler(async (event) => {
   }
 
   try {
-    const response = await $fetch('https://directus.api.hilltrigger.ru/auth/login', {
+    const response = await $fetch(`${process.env.DIRECTUS_URL}/auth/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

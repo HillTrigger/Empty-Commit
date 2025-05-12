@@ -2,7 +2,7 @@ export default defineEventHandler(async () => {
   const config = useRuntimeConfig(); // Достаём API-ключ из конфигурации
 
   try {
-    const response = await $fetch('https://directus.api.hilltrigger.ru/items/posts', {
+    const response = await $fetch(`${process.env.DIRECTUS_URL}/items/posts`, {
       // headers: {
       //   Authorization: `Bearer ${config.apiKey}`, // Скрытый API-ключ
 			

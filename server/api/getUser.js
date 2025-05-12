@@ -18,7 +18,7 @@ export default defineEventHandler(async (event) => {
     });
   }
   try {
-    const response = await $fetch(`https://directus.api.hilltrigger.ru/users/${query.key}`, {
+    const response = await $fetch(`${process.env.DIRECTUS_URL}/users/${query.key}`, {
       headers: {
         Authorization: `Bearer ${config.apiKey}`,
       },

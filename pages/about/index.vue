@@ -1,5 +1,7 @@
 <script setup>
-useMetaTags({description: 'Empty Commit - Блог на NuxtJs', image: 'https://directus.api.hilltrigger.ru/assets/88a049d6-3733-4fe2-9323-4da48cb56bc9', url: 'https://blog.hilltrigger.ru/about'});
+const config = useRuntimeConfig();
+
+useMetaTags({description: 'Empty Commit - Блог на NuxtJs', image: `${config.public.directusUrl}/assets/88a049d6-3733-4fe2-9323-4da48cb56bc9`, url: 'https://blog.hilltrigger.ru/about'});
 </script>
 
 <template>

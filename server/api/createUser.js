@@ -2,7 +2,7 @@ export default defineEventHandler(async (event) => {
   const body = await readBody(event);
 
   try {
-    const response = await $fetch('https://directus.api.hilltrigger.ru/users/register', {
+    const response = await $fetch(`${process.env.DIRECTUS_URL}/users/register`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

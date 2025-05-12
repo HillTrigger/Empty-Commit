@@ -28,7 +28,7 @@ export default defineNuxtConfig({
     runtimeConfig: {
     apiKey: process.env.NUXT_API_KEY,
     public: {
-			directusUrl: process.env.DIRECTUS_URL || 'https://directus.api.hilltrigger.ru', 
+			directusUrl: process.env.DIRECTUS_URL, 
     },
   },
   devtools: { enabled: true },
