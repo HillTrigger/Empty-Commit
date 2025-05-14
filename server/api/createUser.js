@@ -1,8 +1,10 @@
+const config = useRuntimeConfig();
+
 export default defineEventHandler(async (event) => {
   const body = await readBody(event);
 
   try {
-    const response = await $fetch(`${process.env.DIRECTUS_URL}/users/register`, {
+    const response = await $fetch(`${config.public.directusUrl}/users/register`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

@@ -1,5 +1,6 @@
 export default defineEventHandler(async (event) => {
   const body = await readBody(event);
+	const config = useRuntimeConfig();
 
   if (!body.token) {
     throw createError({
@@ -15,7 +16,7 @@ export default defineEventHandler(async (event) => {
   }
 
   try {
-    const response = await $fetch(`${process.env.DIRECTUS_URL}/users/register/verify-email`, {
+    const response = await $fetch(`${config.public.directusUrl}/users/register/verify-email`, {
       method: 'GET',
       query: {
         token: body.token

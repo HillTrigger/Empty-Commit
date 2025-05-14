@@ -2,7 +2,7 @@ export default defineEventHandler(async () => {
   const config = useRuntimeConfig(); // Достаём API-ключ из конфигурации
 
   try {
-    const response = await $fetch(`${process.env.DIRECTUS_URL}/items/posts`, {
+    const response = await $fetch(`${config.public.directusUrl}/items/posts`, {
       // headers: {
       //   Authorization: `Bearer ${config.apiKey}`, // Скрытый API-ключ
 			

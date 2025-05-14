@@ -1,4 +1,5 @@
 export default defineEventHandler(async (event) => {
+	const config = useRuntimeConfig();
   const body = await readBody(event);
 
   if (!body.email || !body.password) {
@@ -16,7 +17,7 @@ export default defineEventHandler(async (event) => {
   }
 
   try {
-    const response = await $fetch(`${process.env.DIRECTUS_URL}/auth/login`, {
+    const response = await $fetch(`${config.public.directusUrl}/auth/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

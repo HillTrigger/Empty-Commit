@@ -1,5 +1,6 @@
 export default defineEventHandler(async (event) => {
   const body = await readBody(event);
+	const config = useRuntimeConfig();
 
   if (!body.refresh_token) {
     throw createError({
@@ -14,7 +15,7 @@ export default defineEventHandler(async (event) => {
   try {
 		console.log(body);
 
-    const {data} = await $fetch(`${process.env.DIRECTUS_URL}/auth/refresh`, {
+    const {data} = await $fetch(`${config.public.directusUrl}/auth/refresh`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

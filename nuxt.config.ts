@@ -30,6 +30,7 @@ export default defineNuxtConfig({
     public: {
 			directusUrl: process.env.DIRECTUS_URL, 
     },
+		appLink: process.env.APP_LINK,
   },
   devtools: { enabled: true },
     css: ['~/assets/styles/main.scss'],

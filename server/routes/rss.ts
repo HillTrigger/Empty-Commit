@@ -1,6 +1,8 @@
 import RSS from 'rss';
 import { marked, type MarkedOptions } from 'marked';
 import sanitizeHtml from 'sanitize-html';
+const config = useRuntimeConfig();
+
 
 const markedOptions: MarkedOptions = {
   breaks: true,
@@ -25,8 +27,8 @@ export default defineEventHandler(async (event) => {
     const feed = new RSS({
       title: 'Мой блог',
       description: 'Свежие статьи и новости',
-      site_url: `${process.env.APP_LINK}`,
-      feed_url: `${process.env.APP_LINK}/rss`,
+      site_url: `${config.appLink}`,
+      feed_url: `${config.appLink}/rss`,
       pubDate: new Date(),
       language: 'ru',
       custom_namespaces: {

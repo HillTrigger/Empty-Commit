@@ -1,4 +1,5 @@
 // server/api/getUser.js
+const config = useRuntimeConfig();
 
 export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig();
@@ -19,7 +20,7 @@ export default defineEventHandler(async (event) => {
     });
   }
   try {
-    const response = await $fetch(`${process.env.DIRECTUS_URL}/items/posts/${query.postId}`, {
+    const response = await $fetch(`${config.public.directusUrl}/items/posts/${query.postId}`, {
       // headers: {
       //   Authorization: `Bearer ${config.apiKey}`,
       // },

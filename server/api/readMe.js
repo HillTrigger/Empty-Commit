@@ -1,5 +1,6 @@
 export default defineEventHandler(async (event) => {
   // Получаем токен из cookies
+	const config = useRuntimeConfig();
   const { access_token } = getQuery(event);
   
   if (!access_token) {
@@ -18,7 +19,7 @@ export default defineEventHandler(async (event) => {
 
   try {
     // Запрос к Directus API для получения данных текущего пользователя
-    const userData = await $fetch(`${process.env.DIRECTUS_URL}/users/me`, {
+    const userData = await $fetch(`${config.public.directusUrl}/users/me`, {
       headers: {
         Authorization: `Bearer ${access_token}`
       }

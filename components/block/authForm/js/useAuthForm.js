@@ -1,3 +1,6 @@
+const config = useRuntimeConfig();
+
+
 export function useAuthForm(modalStates) {
   const { createUser, loginUser } = useEmptyCommitData();
 
