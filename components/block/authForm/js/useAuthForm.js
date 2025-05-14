@@ -28,7 +28,10 @@ export function useAuthForm(modalStates) {
         email: email.value,
         password: password.value,
       });
-      return true;
+      return {
+				email: email.value,
+				status: true
+			};
     } catch (error) {
       errorsText.value = [];
       if (error.data) {
